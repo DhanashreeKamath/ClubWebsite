@@ -45,7 +45,7 @@
 * Sublime Text
 
 ## Question 5
-###(a)
+### (a)
 ``` C++ Sample code
 #include <iostream>
 using namespace std;
@@ -66,7 +66,10 @@ int main() {
     return 0;
 }
 ```
+### (b)
+CLion - It is a cross platform IDE for C and C++. This IDE add class members, override/implement functions, generate constructors/destructors, refactor code,etc. via simple keyboard shortcuts: [CLion](https://www.jetbrains.com/clion/)
 
+Git - It is a free and open source distributed version control system designed to handle everything all types of projects with speed and efficiency. It is convenient for multiple workflows: [Git](https://git-scm.com/)
 
 
 
