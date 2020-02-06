@@ -142,10 +142,73 @@ According to the [HTML5.2 Spec-footer](https://www.w3.org/TR/2017/REC-html52-201
 ```
 ## Question 3
 ### (a)
+(i) `parseInt('hello');`- If the first character cannot be converted to a number it will return Nan. Nan is not a number.
+(ii)`parseInt('12hello');`- It parsed string and returned  12.
+(iii)`parseInt('1010',2);`- number in the string is parsed from binary(radix =2) to a decimal number and returns answer as 10.
+(iv)`parseInt('hi5');`-It is not same as (ii) the answer for this is Nan . It is because first character couldn't be converted as integer.
 
+(v)`parseFloat(3.145Dhanashree);`- 3.145
+(vi)`parseFloat(Dhanashree2112);`- NaN
+
+![Screen Shot](images/ScreenShot6.png) 
 
 ### (b)
 
+
+
+### (c)
+
+(i)
+```
+test = "It's a pain to always escape quotes";
+console.log(test);
+```
+This code snippet works.
+
+(ii)
+```
+test2 = 'It's a pain to always escape quotes'; 
+console.log(test2);
+```
+javascript interpret 'It's as the end of the string.
+
+(iii)
+```
+test3 = 'It\'s a pain to always escape quotes'; 
+console.log(test3);
+```
+backslash ( \ ) character is used to prevent javascript from interpreting a quote 'It\'s as the end of the string.
+
+![Screen Shot](images/ScreenShot8.png) 
+
+### (d)
+(i)
+```
+name = "Dhanashree Kamath Kasaragod"
+uname = name.toUpperCase(); 
+console.log(uname);
+```
+This will convert the given name to uppercase letters. uname = "DHANASHREE KAMATH KASARAGOD".
+
+(ii)
+```
+lname = name.toLowerCase(); // (ii) What?
+console.log(lname);
+```
+This will convert the given name in to lower case letter. lname = "dhanasshree kamath kasaragod".
+
+(iii)
+```
+console.log("Your name includes an 'a': " + uname.includes('A'));
+console.log("Your name includes an 'i': " + lname.includes('i'));
+```
+include function will determine a string contains specified character 'A' and 'i' in the uname and lname.
+
+![Screen Shot](images/ScreenShot9.png) 
+
+### (d)
+
+![Screen Shot](images/ScreenShot10.png) 
 
 ## Question 4
 ### (a)
