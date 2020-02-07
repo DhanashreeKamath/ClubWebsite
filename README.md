@@ -142,12 +142,11 @@ According to the [HTML5.2 Spec-footer](https://www.w3.org/TR/2017/REC-html52-201
 ```
 ## Question 3
 ### (a)
-(i) `parseInt('hello');`- If the first character cannot be converted to a number it will return Nan. Nan is not a number.
-(ii)`parseInt('12hello');`- It parsed string and returned  12.
-(iii)`parseInt('1010',2);`- number in the string is parsed from binary(radix =2) to a decimal number and returns answer as 10.
-(iv)`parseInt('hi5');`-It is not same as (ii) the answer for this is Nan . It is because first character couldn't be converted as integer.
-
-(v)`parseFloat(3.145Dhanashree);`- 3.145
+(i) `parseInt('hello');`- If the first character cannot be converted to a number it will return Nan. Nan is not a number.\
+(ii)`parseInt('12hello');`- It parsed string and returned  12.\
+(iii)`parseInt('1010',2);`- number in the string is parsed from binary(radix =2) to a decimal number and returns answer as 10.\
+(iv)`parseInt('hi5');`-It is not same as (ii) the answer for this is Nan . It is because first character couldn't be converted as integer.\
+(v)`parseFloat(3.145Dhanashree);`- 3.145\
 (vi)`parseFloat(Dhanashree2112);`- NaN
 
 ![Screen Shot](images/ScreenShot6.png) 
@@ -157,6 +156,8 @@ According to the [HTML5.2 Spec-footer](https://www.w3.org/TR/2017/REC-html52-201
 
 
 ### (c)
+
+Two string delimiters are there .This is because we can use single quote, if double quotes need to be appear inside the string without having to escape them or vice versa.
 
 (i)
 ```
@@ -212,24 +213,124 @@ include function will determine a string contains specified character 'A' and 'i
 
 ## Question 4
 ### (a)
+(i)
+```
+sentence = "A long, long, time ago in a galaxy"; // A string
+myArray = sentence.split(' '); // (i) what does this do?
+console.log("The number of words is: " + myArray.length);
+```
+The split() method split given string into an array of substring and returns new array.
 
+(ii)
+```
+myArray.push("far"); // (ii) what do each of these calls do?
+myArray.push("far");
+myArray.push("away");
+console.log("The number of words is: " + myArray.length);
+```
+The push() metgod will add specified element (ex:far,far,away) in to the end of an array and returns the new length of the array.
 
+(iii)
+`console.log(myArray.join('_'));`
+
+The join() method will concatenate all the elements of the array with specified seperator in between an array element.In the abobe example unserscore is the seperator.
+ex: ` A_long,_long,_time_ago_in_a_galaxy_far_far_away`
+
+(iv)
+`tempIndex = myArray.indexOf('galaxy');`
+
+The indexOf('galaxy') method will return the index (position)of the 'galaxy' string in the myarray.
+
+(v)
+`myArray[tempIndex] = "college"; `
+In the above statement element of my array of the specified index is changed to string "college".
+
+before changing myarray: ["A", "long,", "long,", "time", "ago", "in", "a", "galaxy"] \
+after changing myarray: ["A", "long,", "long,", "time", "ago", "in", "a", "college", "far", "far", "away"]
+
+(vi)
+```
+myArray.pop(); // (vi) what does this do?
+console.log("The number of words is: " + myArray.length);
+```
+pop() removes last element from an array and returns that element and changes the length of an array.
+
+![Screen Shot](images/ScreenShot11.png) 
 
 ### (b)
 
+(i)
+```
+function upper(xString) { // (i) What does this function do?
+  return xString.toUpperCase();
+}
+```
+The upper function will covert the input string in to the uppercase string.
 
+(ii)
+`myArray3 = myArray2.map(upper);`
+
+map() method creates new array and add the results of calling a provided function on every element in the calling array.
+
+(iii) 
+`if (x.toLowerCase() < y.toLowerCase()) { // (iii) why would I do this?
+    return -1;
+  }`
+
+compare function is written above to sort an array elements in a specific order. If it is not specfied ,array elements are sorted by converting them to strings and then sortinbg according in UTF 16  code unit order.
+
+(v)
+`myArray2.sort(noCaseSort);`
+sort() method here  will  sort  the array elements in place  by calling nocasefunction and returns sorted array. 
 
 ### (c)
+(i)
+ me["favorite desert"] syntax is used because it is not a valid identifier in javascript. That means there is a space between the proprty name in such case it can be only be accesed using square bracket notation.
+(ii)
+`me.courses = ["CS351", "Your other courses"];
+`
+We can put array in an object.
 
+(iii)
+`me.number = 10`;
 
+(iv)
+`me.codeEditors = ["Sublime Text++", "CLion", "Xcode"];`
+
+![Screen Shot](images/ScreenShot12.png) 
 
 ## Question 5
 ### (a)
+![Screen Shot](images/ScreenShot13.png) 
 
+### (b)
+![Screen Shot](images/ScreenShot14.png) 
 
+### (c)
+selector used in styling <nav>
+```
+li.active{
+  background-color: #87ceeb;
+  display: inline-block; 
+}
+li a:hover{
+  background-color: #87a7eb;
+}
 
+.main-menu{
+  
+  list-style: none; //list 
+}
+.main-menu a{
+  
+  text-decoration: none; // anchor 
+}
+```
+![Screen Shot](images/ScreenShot15.png) 
 
+### (d)
 
+![Screen Shot](images/ScreenShot16.png) 
 
 
 
