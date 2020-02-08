@@ -286,7 +286,7 @@ compare function is written above to sort an array elements in a specific order.
 
 (iv)
 `myArray2.sort(noCaseSort);`
-sort() method here  will  sort  the array elements in place  by calling "nocasefunction" and returns sorted array. 
+sort() method here  will  sort  the array elements in place  by calling "noCaseSort" and returns sorted array. 
 
 ### (c)
 (i)
