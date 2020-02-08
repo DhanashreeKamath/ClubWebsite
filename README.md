@@ -284,14 +284,14 @@ map() method creates new array and add the results of calling a provided functio
 
 compare function is written above to sort an array elements in a specific order. If it is not specfied, array elements are sorted by converting them to strings and then sorting according to UTF-16 code unit order.
 
-(v)
+(iv)
 `myArray2.sort(noCaseSort);`
 sort() method here  will  sort  the array elements in place  by calling "nocasefunction" and returns sorted array. 
 
 ### (c)
 (i)
  me["favorite desert"] syntax is used because it is not a valid identifier in javascript. That means there is a space between the proprty name in such case it can be only be accesed using square bracket notation.
- 
+
 (ii)
 `me.courses = ["CS351", "Your other courses"];
 `
