@@ -18,6 +18,11 @@ List of Image pages
 127926
 U+1f3b6
 
+🎵 MUSICAL NOTE
+127925
+U+1f3b5
+
+
 ![Screen Shot](images/ScreenShot18.png) 
 
 ## Question 2
@@ -178,4 +183,8 @@ document.getElementById("Number").innerHTML = states.length + " " + "states";
 
  ### (c)
 
- ![Screen Shot](images/ScreenShot21.png)
+![Screen Shot](images/ScreenShot21.png)
+
+ ## Question 5
+
+![Screen Shot](images/ScreenShot22.png)
