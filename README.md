@@ -1,190 +1,127 @@
-# Homework #3 Solution
+# Homework #4 Solution
 **Student Name**:  Dhanashree Kamath Kasaragod
 
 **NetID**: hs4947
 
 ## Question 1
 ### (a)
-List of Image pages
 
-1)index.html
-
-2)activities.html
-
-![Screen Shot](images/ScreenShot17.png) 
 
 ### (b)
-🎶 MULTIPLE MUSICAL NOTES
-127926
-U+1f3b6
+```
+<script>
+        //document.querySelector("button").onclick = function(event) { 
+            var loginButton = document.getElementById("loginBtn");
+            loginButton.addEventListener("click",onClickOfLoginBtn);
+            function onClickOfLoginBtn()
+            {
+            var userEmail = document.getElementById("email").value;
+            var password = document.getElementById("password").value;     
 
-🎵 MUSICAL NOTE
-127925
-U+1f3b5
+            var userInfo = "Email Address: " + userEmail +" Password: "+password;
+            console.log(userInfo);
+        }
+    </script>
+```
+![Screen Shot](images/ScreenShot23.png)
 
 
-![Screen Shot](images/ScreenShot18.png) 
+
 
 ## Question 2
 
 ### (a)
-![Screen Shot](images/ScreenShot19.png)
+```
+events = [{"name": "Karaoke Nights",
+           "dates": ["March 10th", "March 17th", "April 15th", "April 26th",
+                     "June 9th", "June 23rd", "July 7th", "July 21",
+                     "August 8th", "August 25th"],
+           "image":"clubimages/KaraokeImg.jpg"},
+         {"name": "Instrumental classes for kids",
+          "dates": ["every monday and tuesday"],
+          "image":"clubimages/KidInstrument.jpg"},
+         {"name": "Vocal Classes", 
+         "dates": ["every Saturday and Sunday"],
+          "image":"clubimages/VocalImage.jpg"}];
+
+```
 
 ### (b)
-URL : http://csweb01.csueastbay.edu/~hs4947/clubProject/index.html
+
+
+### (c)
+
+script on activities.js
+```
+function addEvents(argument) {
+    events.map(item => addLi(item,"clubEvents"));
+}
+function addLi(events, className) {
+    var liChild = document.createElement("li");
+
+    var figChild = document.createElement("figure");
+    var imgChild = document.createElement("img");
+    imgChild.src = events.image;
+    imgChild.classList.add("activityImage");
+    var childInfo = document.createTextNode(events.name+" will be held on "+events.dates);
+    figChild.appendChild(imgChild);
+    liChild.appendChild(childInfo);
+    liChild.appendChild(figChild);
+    document.getElementsByClassName(className)[0].appendChild(liChild);
+}
+window.onload = function() {
+    addEvents();
+};
+```
+![Screen Shot](images/ScreenShot24.png)
 
 ## Question 3
 
 ### (a)   
-```javascript
-document.title = "States Info hs4947";
-document.getElementById("Author").innerHTML =  "Dhanashree Kamath K";
- ```                   
+```
+<form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder ="Enter your name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="actType">Choose an Activity:</label>
+            <select id="activityType">
+                <option value="karokeNights">Karoke Nights</option>
+                <option value="instrument">Instrumental</option>
+                <option value="vocal">Vocal</option>
+                <option value="online">Online</option>
+            </select>
+
+            <label for="level">Choose a level:</label>
+            <select id="activityLevel">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate1">Intermediate1</option>
+                <option value="intermediate2">Intermediate2</option>
+                <option value="advanced">Advanced</option>
+            </select>
+            <br><br>
+            <label for="comments">Questions or Comments?</label><br>
+            <textarea id="questionComments" cols="30" rows="6" placeholder="Questions or Comments"></textarea>
+            <button type="button" id = "register">Register</button>
+        </form> 
+```
+                  
 ### (b)
 
-Number of states and total population
-```javascript
-document.getElementById("Number").innerHTML = states.length + " " + "states";
 
-
-        // total population
-        let initialValue = 0
-        let totalPopulation = states.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.population
-            , initialValue
-            )
-
-        console.log(totalPopulation);
-        document.getElementById("TotalPop") .innerHTML = " Total US population = " + totalPopulation;
-```
 
 ### (c)
-```javascript
-        // total population
-        let initialValue = 0
-        let totalPopulation = states.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.population
-            , initialValue
-            )
-
-        console.log(totalPopulation);
-        document.getElementById("TotalPop") .innerHTML = " Total US population = " + totalPopulation;
 
 
-        //sort states array by population
-        states.sort(function (a, b) {
-          return a.population - b.population;
-      });
+## Question 4
 
-        fiveMost();
-        fiveLeast();
+### (a)
 
-        function fiveLeast()
-        {
-            states.slice(0,5).map(item => addLi(item,"least"));
-        }
+### (b)
 
-        function fiveMost()
-        {
-            states.slice(45,50).map(item => addLi(item,"most"));
-        } 
+### (c)
 
-        function addLi(stateItem, className) {
-            var liChild = document.createElement("li");
-            var childInfo = document.createTextNode(stateItem.state+" has "+stateItem.population+" people");
-            liChild.appendChild(childInfo);
-            document.getElementsByClassName(className)[0].appendChild(liChild);
-        }
 
-```
-![Screen Shot](images/ScreenShot20.png)
+## Question 5
 
- ## Question 4
-
- ### (a)
-```javascript
-        //Sort by state in alphabetical order
-        states.sort(function(a, b) {
-        var nameA = a.state// ignore upper and lowercase
-        var nameB = b.state // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        // names must be equal
-        return 0;
-        });
-        function stateTableName{
-            var sectionElem = document.getElementById('AlphaName');
-            var tbodyElem = sectionElem.getElementsByTagName("tbody");
-            states.map(stateItem => addTablebyName(stateItem));
-        }
-
-        function addTablebyName(stateItem) {
-            var trChild = document.createElement("tr");
-            var tdNameChild = document.createElement("td");
-            var tdNameText = document.createTextNode(stateItem.state);
-            var tdPopulationChild = document.createElement("td");
-            var tdPopulationText = document.createTextNode(stateItem.population);
-            var tdNickNameChild = document.createElement("td");
-            var tdNickNameText = document.createTextNode(stateItem.nickname);
-            tdNameChild.appendChild(tdNameText);
-            trChild.appendChild(tdNameChild);
-            tdPopulationChild.appendChild(tdPopulationText);
-            trChild.appendChild(tdPopulationChild);
-            tdNickNameChild.appendChild(tdNickNameText);
-            trChild.appendChild(tdNickNameChild);
-            tbodyElem[0].appendChild(trChild)
-        }
-
-```
-## (b)
-```javascript
- //Sort by capital in alphabetical order
-        states.sort(function(a, b) {
-          var nameA = a.capital_city// ignore upper and lowercase
-          var nameB = b.capital_city // ignore upper and lowercase
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-
-          // names must be equal
-          return 0;
-        });
-
-        function stateTableCapital(){
-            var sectionElem = document.getElementById('AlphaCapital');
-            var tbodyElem = sectionElem.getElementsByTagName("tbody");
-            states.map(stateItem => addTablebyCapital(stateItem,tbodyElem));
-        }
-
-        function addTablebyCapital(stateItem,tbodyElem) {
-            var trChild = document.createElement("tr");
-            var tdCapitalChild = document.createElement("td");
-            var tdCapitalText = document.createTextNode(stateItem.capital_city);
-            var tdNameChild = document.createElement("td");
-            var tdNameText = document.createTextNode(stateItem.state);
-            var tdAdDateChild = document.createElement("td");
-            var tdAdDateText = document.createTextNode(stateItem.admission_date);
-            tdCapitalChild.appendChild(tdCapitalText);
-            trChild.appendChild(tdCapitalChild);
-            tdNameChild.appendChild(tdNameText);
-            trChild.appendChild(tdNameChild);
-            tdAdDateChild.appendChild(tdAdDateText);
-            trChild.appendChild(tdAdDateChild);
-            tbodyElem[0].appendChild(trChild)
-        }
- ```
-
- ### (c)
-
-![Screen Shot](images/ScreenShot21.png)
-
- ## Question 5
-
-![Screen Shot](images/ScreenShot22.png)

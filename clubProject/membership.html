@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- English -->
+<head>
+	<title>Club Membership</title>
+	<script src="./membership.js"></script>
+	<link rel="stylesheet" href="club.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
+	</style>
+</head>
+<!-- I'm an HTML comment -->
+<body bgcolor="#87ceeb"> <!-- Nothing here yet. -->
+	<nav class="navbox">
+		<ul class = "main-menu">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="activities.html">Activities</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a href="login.html">Login</a></li>
+			<li class="active"><a href="membership.html">Membership</a></li>
+		</ul>
+	</nav>
+	
+	<main class ="box">
+		<header>
+			<h1 class="fh-custom-font"> Union City Music Club</h1>
+			<h2> Club Membership Form</h2>
+		</header>
+		<form>
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" placeholder ="Enter your name">
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email">
+
+			<label for="actType">Choose an Activity:</label>
+			<select id="activityType">
+				<option value="karokeNights">Karoke Nights</option>
+				<option value="instrument">Instrumental</option>
+				<option value="vocal">Vocal</option>
+				<option value="online">Online</option>
+			</select>
+
+			<label for="level">Choose a level:</label>
+			<select id="activityLevel">
+				<option value="beginner">Beginner</option>
+				<option value="intermediate1">Intermediate1</option>
+				<option value="intermediate2">Intermediate2</option>
+				<option value="advanced">Advanced</option>
+			</select>
+			<br><br>
+			<label for="comments">Questions or Comments?</label><br>
+			<textarea id="questionComments" cols="30" rows="6" placeholder="Questions or Comments"></textarea>
+			<button type="button" id = "register">Register</button>
+		</form>	
+       <!-- <dialog id="dialogBox"></dialog>-->
+		<section id="ThanksDialog" class="ShowDialog">. 
+		</section>
+		
+	</main>
+	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer>
+</body>
+</html>
