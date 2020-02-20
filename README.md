@@ -36,14 +36,14 @@ URL : http://csweb01.csueastbay.edu/~hs4947/clubProject/index.html
 ## Question 3
 
 ### (a)   
-```
+```javascript
 document.title = "States Info hs4947";
 document.getElementById("Author").innerHTML =  "Dhanashree Kamath K";
  ```                   
 ### (b)
 
 Number of states and total population
-```
+```javascript
 document.getElementById("Number").innerHTML = states.length + " " + "states";
 
 
@@ -59,7 +59,7 @@ document.getElementById("Number").innerHTML = states.length + " " + "states";
 ```
 
 ### (c)
-```
+```javascript
         // total population
         let initialValue = 0
         let totalPopulation = states.reduce(
@@ -102,7 +102,7 @@ document.getElementById("Number").innerHTML = states.length + " " + "states";
  ## Question 4
 
  ### (a)
-```
+```javascript
         //Sort by state in alphabetical order
         states.sort(function(a, b) {
         var nameA = a.state// ignore upper and lowercase
@@ -141,7 +141,7 @@ document.getElementById("Number").innerHTML = states.length + " " + "states";
 
 ```
 ## (b)
-```
+```javascript
  //Sort by capital in alphabetical order
         states.sort(function(a, b) {
           var nameA = a.capital_city// ignore upper and lowercase
