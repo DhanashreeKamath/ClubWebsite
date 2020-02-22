@@ -1,7 +1,7 @@
 // Union City Music Club Year 2020 events
 events = [{"name": "Karaoke Nights",
-           "dates": ["March 10th", "March 17th", "April 15th", "April 26th",
-                     "June 9th", "June 23rd", "July 7th", "July 21",
+           "dates": ["January 2nd","February 14th","March 12th", "March 17th", "April 15th", "April 26th",
+                     "June 9th", "June 24rd", "July 9th", "July 25",
                      "August 8th", "August 25th"],
            "image":"clubimages/KaraokeImg.jpg"},
          {"name": "Instrumental classes for kids",
