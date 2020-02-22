@@ -185,6 +185,8 @@ window.onload = function() {
 ## Question 4
 
 ### (a)
+![Screen Shot](images/ScreenShot26.png)
+
 ```css
 #membershipForm {
     display: grid;
@@ -229,6 +231,8 @@ window.onload = function() {
 ```
 
 ### (c)
+![Screen Shot](images/ScreenShot27.png)
+
 ``` css
 #loginForm
     {
@@ -256,5 +260,50 @@ window.onload = function() {
     }
 ```
 
+### (d)
+![Screen Shot](images/ScreenShot28.png)
+
+```css
+.navbox{
+    background-color: white;
+    padding-top:10px;
+    padding-right: 4em;
+    margin-top: 10px;
+    border-radius: 30px;
+    max-width: 100px;
+    border-style: ridge;
+    border-color: #87dfeb;
+    margin-right: auto;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box {
+    padding-top:30px;
+    padding-right: 100px;
+    padding-bottom: 100px;
+    padding-left: 4em;
+    background-color: white;
+    margin-top: 40px;
+    border-radius: 30px;
+    border-style: ridge;
+    border-color: #87dfeb;
+}
+
+footer {
+    text-align: center;
+    font-size: 15px;
+    max-width: 50px
+    max-height:50px;
+}
+
+```
+
 ## Question 5
 
+[ClubProject URL](http://csweb01.csueastbay.edu/~hs4947/clubProject/index.html)
