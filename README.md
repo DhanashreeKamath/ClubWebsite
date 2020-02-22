@@ -113,7 +113,7 @@ window.onload = function() {
         </section>  
 ```
                   
-
+![Screen Shot](images/ScreenShot25.png)
 
 ### (b)
 
