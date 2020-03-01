@@ -128,7 +128,9 @@ window.onload = function() {
 ![Screen Shot](images/ScreenShot32.png)
 
 ### (c)
-load n link
+[LinkToCustomMarkdown](http://csweb01.csueastbay.edu/~hs4947/hw5/)
+
+
 ### (d)
 * CSS file- ProcessMD.5c138e5f.css"> 
 File Size - 1 KB
