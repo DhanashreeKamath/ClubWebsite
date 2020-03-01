@@ -2,39 +2,45 @@
 <html lang="en"> <!-- English -->
 <head>
 	<title>ProcessMD</title>
+
 	<style>
 		@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
 		body {
-			text-align: center;
 			align-items: center;
 		}
-		section {
+		.main_section {
 			width: 40%;
 			border:solid black;
-			min-height: 4em;
+			min-height: 9em;
 			margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 4em
+			margin-right: auto;
+			margin-bottom: 4em
 
 		}
 		textarea {
 			box-sizing: border-box;
 			width:100%;
-			min-height: 3.5em;
+			height: 100%;
+			min-height:13em;
 
 		}
+		.central {
+			text-align: center;
+		}
 	</style>
-    <script type="/ProcessMD.js"></script>
 </head>
 
-<body> <!-- Nothing here yet. -->	
-<h1>Markdown Processor</h1>
-<h3>Type MarkDown here:</h3>
-<section id ="Input">
-    <textarea id="InputTA"></textarea>
+<body> <!-- Nothing here yet. -->
+	<section class="central">
+	<h1 >Markdown Processor</h1>
+	<h3 >Type MarkDown here:</h3>
+	<section id ="input" class="main_section">
+		<textarea id="inputTA"></textarea>
+	</section>
+	<button id="convert"> Convert to HTML</button>
+	<h3 > Rendered HTML here:</h3>
 </section>
-<button id="Convert"> Convert to HTML</button>
-<h3> Rendered HTML here:</h3>
-<section id="Output"></section>
+	<section id="output" class="main_section"></section>
+	<script src ="./ProcessMD.js"></script>
 </body>
 </html>

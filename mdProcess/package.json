@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commonmark": "^0.29.1"
+    "commonmark": "^0.29.1",
+    "highlight.js": "^9.18.1"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
   }
 }
