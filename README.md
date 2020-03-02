@@ -90,7 +90,8 @@ window.onload = function() {
 import hljs from 'highlight.js';
 import 'highlight.js/styles/idea.css';
 ```
-There is nothing odd about the above code. Highlight.js is a syntax highlighter written in JavaScript. It works in the browser and on the server. It works with markup and doen't depend on any framework .It also has automatic language detection.
+There is nothing odd about the above code. Highlight.js is a syntax highlighter written in JavaScript. It works in the browser and on the server. It works with markup and doesn't depend on any framework .It also has automatic language detection.
+By installing npm package it will create packge.json node module in which all the css and js files will be downloaded . Then by using import satement we can use required CSS .
 
 ### (b)
 
@@ -132,13 +133,62 @@ window.onload = function() {
 
 
 ### (d)
-* CSS file- ProcessMD.5c138e5f.css"> 
-File Size - 1 KB
-* script file -"ProcessMD.5b9da170.js"> 
-File Size - 1.3 MB
 
-Yes, The file size seems larger. It is because we are importing large library and using very few functions of it in this project.Instead of that if we pick and choose specific functions or components, which are required for the project then it is possible to reduce the file size.
+* CSS file- ProcessMD.5c138e5f.css"> 
+File Size - 980 bytes
+* script file -"ProcessMD.5b9da170.js"> 
+File Size - 890 KB
+
+Yes, The file size seems bit larger. It is because we are importing large library and using very few functions of it in this project.Instead of that if we pick and choose specific functions or components, which are required for the project then it is possible to reduce the file size.
 
 
 ## Question 5
+
+### (a)
+![Screen Shot](images/ScreenShot33.png)
+
+``` javascript 
+import React from "react";
+import ReactDOM from "react-dom";
+import chemElements from "./elements.json";
+
+// What is this? HTML mixed with JavaScript
+let htmlTags = <div>
+			   <h1> The Periodic Table</h1>
+    		   <h2> Brought to you by Dhanashree Kamath Kasaragod and Net ID hs4947</h2>
+    		   <p> There are {chemElements.length} chemical elements. </p>
+    		   </div>;
+ReactDOM.render(
+    htmlTags,
+    document.getElementById("root")
+);
+```
+### (b)
+``` javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+export default function PeriodicTable(props) {
+	return <table><thead><tr>
+	{(props.desiredCols).map((colName) =>
+		<th key={colName}>{colName}</th>
+	)}
+	</tr>
+	</thead>
+	<tbody>
+	{(props.chemElements).map((chemElement) =>
+		<tr key = {chemElement.atomic_number}>
+		<td>{chemElement.atomic_number}</td>
+  		<td>{chemElement.name}</td>
+  		<td>{chemElement.symbol}</td>
+  		<td>{chemElement.phase}</td>
+  		<td>{chemElement.year_of_discovery}</td>
+  		</tr>
+	)}
+	</tbody>
+	</table>;
+}
+```
+![Screen Shot](images/ScreenShot34.png)
+
 
