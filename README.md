@@ -91,7 +91,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/idea.css';
 ```
 There is nothing odd about the above code. Highlight.js is a syntax highlighter written in JavaScript. It works in the browser and on the server. It works with markup and doesn't depend on any framework .It also has automatic language detection.
-By installing npm package it will create packge.json node module in which all the css and js files will be downloaded . Then by using import satement we can use required CSS .
+By installing npm package it will create packge.json node module in which all the css and js files will be downloaded . Then by using import statement we can use required CSS .
 
 ### (b)
 
