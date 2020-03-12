@@ -21,6 +21,9 @@ figure figcaption {
 	text-align: center;
 }
 
+a {
+	cursor: pointer;
+}
 
 /*li.active > a{
 	background-color: #87ceeb;
