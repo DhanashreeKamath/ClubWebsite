@@ -10,17 +10,39 @@ class AdminApp extends React.Component {
 		this.state = {show:"home"};
 	}
 
+    homeHandler(event)
+	{
+		this.setState({show:"home"});
+	}
+	editActivityHandler(event)
+	{
+		this.setState({show:"editActivity"});
+	}
+	aboutHandler(event)
+	{
+		this.setState({show:"about"});
+	}
+
+	logoutHandler(event)
+	{
+		this.setState({show:"logout"});
+	}
+	
+	membersOnlyHandler(event)
+	{
+		this.setState({show:"membersOnly"})
+	}
 	render() {
         let navBar= <div>
 	    <nav className="navbox">
 		<ul className = "main-menu">
-			<li><a href="">Home</a></li>
-			<li><a href="">EditActivities</a></li>
-			<li><a href="">About</a></li>
-			<li><a href="">Logout</a></li>
-			<li><a href="">MembersOnly</a></li>
+			<li className = {this.state.show == "home" ? "active" : null}><a onClick={this.homeHandler.bind(this)}>Home</a></li>
+			<li className = {this.state.show == "editActivity" ? "active" : null}><a onClick={this.editActivityHandler.bind(this)}>EditActivities</a></li>
+			<li className = {this.state.show == "about" ? "active" : null}><a onClick={this.aboutHandler.bind(this)}>About</a></li>
+			<li className = {this.state.show == "logout" ? "active" : null}><a onClick={this.logoutHandler.bind(this)}>Logout</a></li>
+			<li className = {this.state.show == "membersOnly" ? "active" : null}><a onClick={this.membersOnlyHandler.bind(this)}>MembersOnly</a></li>
 		</ul>
-	</nav>
+	</nav> 
    </div>;
    let contents = null;
 	switch (this.state.show) {
@@ -31,7 +53,7 @@ class AdminApp extends React.Component {
                 contents = <AboutClub role={this.state.about}/>;
                 break;
             default:
-                contents = <h2>Warning something went wrong!!!</h2>;
+                contents = <h2>This page is not implemented yet!!!</h2>;
         }
         return <div>{navBar}{contents}</div>
     }

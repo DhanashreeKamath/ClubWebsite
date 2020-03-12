@@ -4,36 +4,59 @@ import HomeClub from "./Home"
 import AboutClub from "./About"
 
 class MemberApp extends React.Component {
-constructor(props){
-	super(props);
-	this.state = {show: "home"};
-}
+	constructor(props){
+		super(props);
+		this.state = {show: "home"};
+	}
 
-render(){
-        let navBar=<div>
-	    <nav className="navbox">
+	homeHandler(event)
+	{
+		this.setState({show:"home"});
+	}
+	activityHandler(event)
+	{
+		this.setState({show:"activities"});
+	}
+	aboutHandler(event)
+	{
+		this.setState({show:"about"});
+	}
+
+	logoutHandler(event)
+	{
+		this.setState({show:"logout"});
+	}
+	
+	membersOnlyHandler(event)
+	{
+		this.setState({show:"membersOnly"})
+	}
+
+	render(){
+		let navBar = <div>
+		<nav className="navbox">
 		<ul className = "main-menu">
-			<li><a href="">Home</a></li>
-			<li><a href="">Activities</a></li>
-			<li><a href="">About</a></li>
-			<li><a href="">Logout</a></li>
-			<li><a href="">MembersOnly</a></li>
+		<li className = {this.state.show == "home" ? "active" : null}><a onClick={this.homeHandler.bind(this)}>Home</a></li>
+		<li className = {this.state.show == "activities" ? "active" : null}><a onClick={this.activityHandler.bind(this)}>Activities</a></li>
+		<li className = {this.state.show == "about" ? "active" : null}><a onClick={this.aboutHandler.bind(this)}>About</a></li>
+		<li className = {this.state.show == "logout" ? "active" : null}><a onClick={this.logoutHandler.bind(this)}>Logout</a></li>
+		<li className = {this.state.show == "membersOnly" ? "active" : null}><a onClick={this.membersOnlyHandler.bind(this)}>MembersOnly</a></li>
 		</ul>
-	</nav>
-   </div>;
-  
-  let contents = null;
-	switch (this.state.show) {
-            case "home":
-                contents = <HomeClub role={this.state.home}/>;
-                break;
-            case "about":
-                contents = <AboutClub role={this.state.about}/>;
-                break;
-            default:
-                contents = <h2>Warning something went wrong!!!</h2>;
-        }
-        return <div>{navBar}{contents}</div>
-    }
+		</nav>
+		</div>;
+
+		let contents = null;
+		switch (this.state.show) {
+			case "home":
+			contents = <HomeClub role={this.state.home}/>;
+			break;
+			case "about":
+			contents = <AboutClub role={this.state.about}/>;
+			break;
+			default:
+			contents = <h2>This page is not implemented yet!!!</h2>;
+		}
+		return <div>{navBar}{contents}</div>
+	}
 }
 export default MemberApp;
