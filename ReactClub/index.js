@@ -1,30 +1,3 @@
-# Homework #6 Solution
-**Student Name**:  Dhanashree Kamath Kasaragod
-
-**NetID**: hs4947
-
-## Question 1
-### (a)
-
-### (b)
-![ScreenShot](images/ScreenShot61.png)
-
-### (c)
-Guest App
-
-![ScreenShot](images/ScreenShot62.png)
-
-Member App
-
-![ScreenShot](images/ScreenShot63.png)
-
-Admin App
-
-![ScreenShot](images/ScreenShot64.png)
-
-### (d)
-As of now club main page is kept inside index.js along with state change code.
-```index.js
 import React from "react";
 import ReactDOM from "react-dom";
 import indexImg from "./clubimages/IndexImg.jpg";
@@ -80,48 +53,3 @@ class App extends React.Component {
     }
 }
 ReactDOM.render(<App />, document.getElementById("root"));
-```
-
-## Question 2 
-
-### (a)
-
-
-### (b)
-
-
-### (c)
-
-
-## Question 3
-
-### (a)   
-
-### (b)
-
-
-
-
-## Question 4
-
-### (a)
-
-
-
-### (c)
-
-
-
-### (d)
-
-
-
-## Question 5
-
-### (a)
-
-### (b)
-
-
-
-
