@@ -7,20 +7,20 @@
 ### (a)
 
 ### (b)
-![ScreenShot](images/ScreenShot61.png)
+![ScreenShot](images/ScreenShot35.png)
 
 ### (c)
 Guest App
 
-![ScreenShot](images/ScreenShot62.png)
+![ScreenShot](images/ScreenShot36.png)
 
 Member App
 
-![ScreenShot](images/ScreenShot63.png)
+![ScreenShot](images/ScreenShot37.png)
 
 Admin App
 
-![ScreenShot](images/ScreenShot64.png)
+![ScreenShot](images/ScreenShot38.png)
 
 ### (d)
 As of now club main page is kept inside index.js along with state change code.
@@ -124,8 +124,7 @@ class GuestApp extends React.Component {
 
 
  render(){ 
-        let navBar =  <div>
-	    <nav className="navbox">
+        let navBar = <nav className="navbox">
 		<ul className = "main-menu">
 			<li className = {this.state.show == "home" ? "active" : null}><a onClick={this.homeHandler.bind(this)}>Home</a></li>
 			<li className = {this.state.show == "activities" ? "active" : null}><a onClick={this.activityHandler.bind(this)}>Activities</a></li>
@@ -133,8 +132,8 @@ class GuestApp extends React.Component {
 			<li className = {this.state.show == "login" ? "active" : null}><a onClick={this.loginHandler.bind(this)}>Login</a></li>
 			<li className = {this.state.show == "membership" ? "active" : null}><a onClick={this.membershipHandler.bind(this)}>Membership</a></li>
 		</ul>
-	</nav>
-	</div>;
+	</nav>;
+	
 	let contents = null;
 	switch (this.state.show) {
             case "home":
@@ -144,9 +143,9 @@ class GuestApp extends React.Component {
                 contents = <AboutClub role={this.state.about}/>;
                 break;
             default:
-                contents = <h2>Not implemented yet!!!</h2>;
+                contents = <h2>This page is not implemented yet!!!</h2>;
         }
-        return <div>{navBar}{contents}</div>
+        return <div className="bodyStyle">{navBar}{contents}</div>
     }
 
 }
@@ -155,15 +154,15 @@ export default GuestApp;
 ```
 GuestApp home state
 
-![ScreenShot](images/ScreenShot65.png)
+![ScreenShot](images/ScreenShot39.png)
 
 GuestApp about state
 
-![ScreenShot](images/ScreenShot66.png)
+![ScreenShot](images/ScreenShot40.png)
 
 GuestApp login state
 
-![ScreenShot](images/ScreenShot67.png)
+![ScreenShot](images/ScreenShot41.png)
 
 ### (c)
 
@@ -174,33 +173,121 @@ GuestApp login state
 
 Member State 
 
-![ScreenShot](images/ScreenShot68.png)
+![ScreenShot](images/ScreenShot42.png)
 
 ### (b)
 
 Admin State
 
-![ScreenShot](images/ScreenShot68.png)
+![ScreenShot](images/ScreenShot43.png)
 
 
 
 ## Question 4
 
 ### (a)
+Login 
 
+![ScreenShot](images/ScreenShot44.png)
+
+
+### (b)
+
+``` function added to the class App in index.js
+constructor(props) {
+		super(props);
+		this.roleChange = this.roleChange.bind(this);
+        this.state = {role: "guest"}; 
+        this.userInfo = null;// We will have "user" and "admin" roles too.
+    }
+
+    roleChange(roleVal, userInfo) {
+     	this.setState({role: roleVal})
+     	this.userInfo = userInfo;
+     	console.log(userInfo)
+    }
+```
+
+``` code in Login.js to handle login button click
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+
+class Login extends React.Component {
+  constructor(props)
+  {
+  	super(props)
+  	{
+  		this.roleChange = props.roleChange;
+		this.loginParse = this.loginParse.bind(this);
+  	}
+  }
+
+ loginParse() {
+	let userinfo = {"name": "Dhanashree Kamath K", "NetID": "hs4947"};
+	if(email.value == "admin@email.org")
+      	this.roleChange("admin", userinfo)
+     else if (email.value == "member@email.org")  
+        this.roleChange("member", userinfo)
+     else
+     	this.roleChange("guest", userinfo)
+}
+
+render()
+{
+	return <div><main className ="box">
+		<header>
+			<h1 className="fh-custom-font">Login</h1>
+		</header>
+		<section id="loginForm">
+			<label htmlFor="email">Email: </label>
+			<input type="email" name="email" id="email" required placeholder="email" />
+			<label htmlFor="password">Password: </label>
+			<input type="password" id="password" placeholder="password"/>
+			<button type="button" id = "loginBtn" onClick={this.loginParse}>Login</button>
+		</section>
+	</main>
+	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925; </footer>
+	</div>;
+}
+	
+}
+
+export default Login;
+```
 
 
 ### (c)
 
+``` code snippet od adminApp.js to logout 
+logoutHandler(event)
+	{
+		this.setState({show:"logout"});
+		this.roleChange("guest"," ");
 
-
-### (d)
-
-
+	}
+```
 
 ## Question 5
 
 ### (a)
+``` activities.json
+[{"name": "Karaoke Nights",
+           "dates": ["January 2nd","February 14th","March 12th", "March 17th", "April 15th", "April 26th",
+                     "June 9th", "June 24rd", "July 9th", "July 25",
+                     "August 8th", "August 25th"],
+           "image":"clubimages/KaraokeImg.jpg"},
+         {"name": "Instrumental classes for kids",
+          "dates": ["every monday and tuesday"],
+          "image":"clubimages/KidInstrument.jpg"},
+         {"name": "Vocal Classes", 
+         "dates": ["every Saturday and Sunday"],
+          "image":"clubimages/VocalImage.jpg"},
+          {"name": "Online Classes", 
+         "dates": ["every Friday"],
+          "image":"clubimages/OnlineImg.jpg"}];
+```
 
 ### (b)
 

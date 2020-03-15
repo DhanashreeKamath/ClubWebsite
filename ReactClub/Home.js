@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import indexImg from "./clubimages/IndexImg.jpg";
-import "./club.css";
 
 
-function Home(props){
-	 let mainPageBody = <div className ="divStyle">
-	<main className ="box">
+function Home(props){ 
+	return <div><main className ="box">
 		<header>
 			<h1 className="fh-custom-font"> Union City Music Club</h1>
 			<h2> Introduction</h2>
@@ -17,11 +15,7 @@ function Home(props){
 			<figcaption>Music Club,Union City.</figcaption>
 		</figure>
 	</main>
-	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925; </footer>
-	</div>;
-	return <div>
- {mainPageBody}
- </div>
+	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925; </footer></div>;
 }
 
 export default Home;

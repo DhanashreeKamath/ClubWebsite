@@ -57,14 +57,19 @@ a {
 		border-style: ridge;
 		border-color: #87dfeb;
 		margin-right: auto;
+
 	}
 
 	body {
+		
+		background-color: #87ceeb;
+	}
+
+	.bodyStyle {
 		display:flex;
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		background-color: #87ceeb;
 	}
 
 	.box {

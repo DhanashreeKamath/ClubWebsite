@@ -7,6 +7,7 @@ class MemberApp extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {show: "home"};
+		this.roleChange = props.roleChange;
 	}
 
 	homeHandler(event)
@@ -25,6 +26,7 @@ class MemberApp extends React.Component {
 	logoutHandler(event)
 	{
 		this.setState({show:"logout"});
+		this.roleChange("guest"," ");
 	}
 	
 	membersOnlyHandler(event)
@@ -33,8 +35,7 @@ class MemberApp extends React.Component {
 	}
 
 	render(){
-		let navBar = <div>
-		<nav className="navbox">
+		let navBar = <nav className="navbox">
 		<ul className = "main-menu">
 		<li className = {this.state.show == "home" ? "active" : null}><a onClick={this.homeHandler.bind(this)}>Home</a></li>
 		<li className = {this.state.show == "activities" ? "active" : null}><a onClick={this.activityHandler.bind(this)}>Activities</a></li>
@@ -42,8 +43,7 @@ class MemberApp extends React.Component {
 		<li className = {this.state.show == "logout" ? "active" : null}><a onClick={this.logoutHandler.bind(this)}>Logout</a></li>
 		<li className = {this.state.show == "membersOnly" ? "active" : null}><a onClick={this.membersOnlyHandler.bind(this)}>MembersOnly</a></li>
 		</ul>
-		</nav>
-		</div>;
+		</nav>;
 
 		let contents = null;
 		switch (this.state.show) {
@@ -56,7 +56,7 @@ class MemberApp extends React.Component {
 			default:
 			contents = <h2>This page is not implemented yet!!!</h2>;
 		}
-		return <div>{navBar}{contents}</div>
+		return <div className="bodyStyle" >{navBar}{contents}</div>
 	}
 }
 export default MemberApp;

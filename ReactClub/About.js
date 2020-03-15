@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
-function AboutClub(props){
+function About(props){
 
 return <div>
 	<main className ="box">
@@ -15,7 +15,6 @@ return <div>
 	</main>
 	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer>
 </div>
-return <div></div>
 }
 
-export default AboutClub;
+export default About;
