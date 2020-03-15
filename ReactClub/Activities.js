@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import activityList from "./activities.json";
+import images from './clubimages/*.jpg';
 
 
 function Activities(props) {
@@ -15,7 +16,7 @@ function Activities(props) {
 		return <li key = {activity.name}>
 		<p>{activity.name} will be held on following days {activity.dates}</p>
 		<figure>
-		  <img className="activityImage" src= {require(activity.image)}/>
+		   <img className="activityImage" src={images[activity.image]}/>
 		</figure>
 		</li>
 	}
