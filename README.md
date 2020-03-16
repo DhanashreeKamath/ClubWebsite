@@ -137,10 +137,10 @@ class GuestApp extends React.Component {
 	let contents = null;
 	switch (this.state.show) {
             case "home":
-                contents = <HomeClub role={this.state.home}/>;
+                contents = <HomeClub/>;
                 break;
             case "about":
-                contents = <AboutClub role={this.state.about}/>;
+                contents = <AboutClub/>;
                 break;
             default:
                 contents = <h2>This page is not implemented yet!!!</h2>;
@@ -159,12 +159,6 @@ GuestApp home state
 GuestApp about state
 
 ![ScreenShot](images/ScreenShot40.png)
-
-GuestApp login state
-
-![ScreenShot](images/ScreenShot41.png)
-
-### (c)
 
 
 ## Question 3
@@ -193,22 +187,25 @@ Login
 
 ### (b)
 
-``` function added to the class App in index.js
-constructor(props) {
+roleChange(roleVal, userInfo) dunction is added to set the role 
+
+``` index.js 
+   constructor(props) {
 		super(props);
 		this.roleChange = this.roleChange.bind(this);
-        this.state = {role: "guest"}; 
-        this.userInfo = null;// We will have "user" and "admin" roles too.
+        this.state = {role: "guest", userInfo:{}}; 
+        // We will have "user" and "admin" roles too.
     }
 
     roleChange(roleVal, userInfo) {
-     	this.setState({role: roleVal})
-     	this.userInfo = userInfo;
+     	this.setState({role: roleVal, userInfo:userInfo});
      	console.log(userInfo)
     }
 ```
 
-``` code in Login.js to handle login button click
+code to handle login button click
+
+``` Login.js code to handle login button click
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -226,7 +223,7 @@ class Login extends React.Component {
 
  loginParse() {
 	let userinfo = {"name": "Dhanashree Kamath K", "NetID": "hs4947"};
-	if(email.value == "admin@email.org")
+	 if(email.value == "admin@email.org")
       	this.roleChange("admin", userinfo)
      else if (email.value == "member@email.org")  
         this.roleChange("member", userinfo)
@@ -259,12 +256,12 @@ export default Login;
 
 
 ### (c)
-
-``` code snippet od adminApp.js to logout 
+Code snippet to handle logout in adminApp.js. Following function is called when logout option is clicked.
+```adminApp.js 
 logoutHandler(event)
 	{
 		this.setState({show:"logout"});
-		this.roleChange("guest"," ");
+		this.roleChange("guest",null);
 
 	}
 ```
@@ -277,20 +274,22 @@ logoutHandler(event)
            "dates": ["January 2nd","February 14th","March 12th", "March 17th", "April 15th", "April 26th",
                      "June 9th", "June 24rd", "July 9th", "July 25",
                      "August 8th", "August 25th"],
-           "image":"clubimages/KaraokeImg.jpg"},
+           "image":"KaraokeImg"},
          {"name": "Instrumental classes for kids",
           "dates": ["every monday and tuesday"],
-          "image":"clubimages/KidInstrument.jpg"},
+          "image":"KidInstrument"},
          {"name": "Vocal Classes", 
          "dates": ["every Saturday and Sunday"],
-          "image":"clubimages/VocalImage.jpg"},
+          "image":"VocalImage"},
           {"name": "Online Classes", 
          "dates": ["every Friday"],
-          "image":"clubimages/OnlineImg.jpg"}];
+          "image":"OnlineImg"}];
 ```
 
 ### (b)
+![ScreenShot](images/ScreenShot45.png)
 
+### (c)
 
 
 

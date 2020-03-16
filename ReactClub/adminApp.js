@@ -27,7 +27,7 @@ class AdminApp extends React.Component {
 	logoutHandler(event)
 	{
 		this.setState({show:"logout"});
-		this.roleChange("guest"," ");
+		this.roleChange("guest",null);
 
 	}
 	
@@ -49,10 +49,10 @@ class AdminApp extends React.Component {
    let contents = null;
 	switch (this.state.show) {
             case "home":
-                contents = <HomeClub role={this.state.home}/>;
+                contents = <HomeClub />;
                 break;
             case "about":
-                contents = <AboutClub role={this.state.about}/>;
+                contents = <AboutClub />;
                 break;
             default:
                 contents = <h2>This page is not implemented yet!!!</h2>;

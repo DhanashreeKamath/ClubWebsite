@@ -11,13 +11,12 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.roleChange = this.roleChange.bind(this);
-        this.state = {role: "guest"}; 
-        this.userInfo = null;// We will have "user" and "admin" roles too.
+        this.state = {role: "guest", userInfo:{}}; 
+        //this.userInfo = null;// We will have "user" and "admin" roles too.
     }
 
     roleChange(roleVal, userInfo) {
-     	this.setState({role: roleVal})
-     	this.userInfo = userInfo;
+     	this.setState({role: roleVal, userInfo:userInfo});
      	console.log(userInfo)
     }
     // Renders component based on current state and props
@@ -25,13 +24,13 @@ class App extends React.Component {
     let contents = null;
         switch (this.state.role) {
             case "member":
-                contents = <MemberApp role={this.state.member} roleChange={this.roleChange}/>;
+                contents = <MemberApp roleChange={this.roleChange}/>;
                 break;
             case "admin":
-                contents = <AdminApp role={this.state.admin} roleChange={this.roleChange}/>;
+                contents = <AdminApp  roleChange={this.roleChange}/>;
                 break;
             case "guest":
-                contents = <GuestApp role={this.state.guest} roleChange={this.roleChange}/>;
+                contents = <GuestApp  roleChange={this.roleChange}/>;
                 break;
             default:
                 contents = <h2>Warning something went wrong!!!</h2>;
