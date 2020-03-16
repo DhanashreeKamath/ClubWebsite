@@ -39,11 +39,11 @@ a {
 
 	.main-menu{
 
-		list-style: none; //list 
+		list-style: none;
 	}
 	.main-menu a{
 
-		text-decoration: none; // anchor 
+		text-decoration: none;
 	}
 
 	.navbox{
@@ -86,10 +86,8 @@ a {
 
 	footer {
 		text-align: center;
-		font-size: 15px;
-		max-width: 50px
-		max-height:50px;
 	}
+	
 	#modal {
 		display: none; 
 		position: fixed; 
