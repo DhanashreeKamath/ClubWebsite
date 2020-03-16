@@ -44,13 +44,13 @@ class App extends React.Component {
     let contents = null;
         switch (this.state.role) {
             case "member":
-                contents = <MemberApp role={this.state.member}/>;
+                contents = <MemberApp/>;
                 break;
             case "admin":
-                contents = <AdminApp role={this.state.admin}/>;
+                contents = <AdminApp/>;
                 break;
             case "guest":
-                contents = <GuestApp role={this.state.guest}/>;
+                contents = <GuestApp/>;
                 break;
             default:
                 contents = <h2>Warning something went wrong!!!</h2>;
@@ -88,6 +88,8 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 
 ### (b)
+guestApp.js
+
 ``` guestApp.js
 import React from "react";
 import ReactDOM from "react-dom";
@@ -288,6 +290,39 @@ logoutHandler(event)
 
 ### (b)
 ![ScreenShot](images/ScreenShot45.png)
+
+code of Activities.js
+``` Activities.js
+import React from "react";
+import ReactDOM from "react-dom";
+import activityList from "./activities.json";
+import images from './clubimages/*.jpg';
+
+
+function Activities(props) {
+    return <div><main className ="box">
+		<header>
+			<h1 className="fh-custom-font"> Union City Music Club</h1>
+			<h2> Our Activities</h2>
+		</header>
+		<ul className="clubEvents">
+	{(activityList).map((activity) => {
+		console.log(activity.image);
+		return <li key = {activity.name}>
+		<p>{activity.name} will be held on following days {activity.dates}</p>
+		<figure>
+		   <img className="activityImage" src={images[activity.image]}/>
+		</figure>
+		</li>
+	}
+
+	)}
+	</ul>
+	</main>
+	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer></div>;
+}
+export default Activities;
+```
 
 ### (c)
 
