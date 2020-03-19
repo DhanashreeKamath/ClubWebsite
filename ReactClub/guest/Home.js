@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import indexImg from "./clubimages/IndexImg.jpg";
+import indexImg from "../clubimages/IndexImg.jpg";
 
 
 function Home(props){ 

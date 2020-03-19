@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import HomeClub from "./Home"
-import AboutClub from "./About"
+import HomeClub from "../guest/Home";
+import AboutClub from "../guest/About";
 
 class MemberApp extends React.Component {
 	constructor(props){

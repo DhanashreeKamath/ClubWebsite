@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import HomeClub from "./Home"
-import AboutClub from "./About"
+import HomeClub from "../guest/Home";
+import AboutClub from "../guest/About";
+import AdminClubActivitiy from "./AdminActivity";
 
 class AdminApp extends React.Component {
 	constructor(props)
@@ -53,6 +54,9 @@ class AdminApp extends React.Component {
                 break;
             case "about":
                 contents = <AboutClub />;
+                break;
+            case "editActivity":
+                contents = <AdminClubActivitiy />;
                 break;
             default:
                 contents = <h2>This page is not implemented yet!!!</h2>;

@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import indexImg from "./clubimages/IndexImg.jpg";
 import "./club.css";
-import MemberApp from "./memberApp";
-import AdminApp from "./adminApp";
-import GuestApp from "./guestApp";
+import MemberApp from "./member/memberApp";
+import AdminApp from "./admin/adminApp";
+import GuestApp from "./guest/guestApp";
 
 
 class App extends React.Component {
