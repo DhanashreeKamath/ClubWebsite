@@ -149,6 +149,26 @@ a {
 		
 	}
 
+	table {
+		
+		border: 5px solid #0c3740;
+		border-collapse: collapse;
+		display: fixed;
+		border-width: 5px;
+	}
+
+	td {
+		padding:10px;
+		border:2px solid;
+		border-color: #219cb4;
+	}
+
+	thead {
+		font-weight:bold;
+		font-family:'Arial';
+		color :#187083;
+	}
+
 	/*.divStyle {
 		background-color: #87ceeb;
 	}*/

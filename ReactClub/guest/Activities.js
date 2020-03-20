@@ -10,19 +10,25 @@ function Activities(props) {
 			<h1 className="fh-custom-font"> Union City Music Club</h1>
 			<h2> Our Activities</h2>
 		</header>
-		<ul className="clubEvents">
+		<table>
+		<thead> 
+		<tr> 
+		<td>Event </td>
+		<td> Dates </td>
+		</tr>
+		</thead>
+
+     <tbody>
 	{(activityList).map((activity) => {
-		console.log(activity.image);
-		return <li key = {activity.name}>
-		<p>{activity.name} will be held on following days {(activity.dates).join(", ")}</p>
-		<figure>
-		   <img className="activityImage" src={images[activity.image]}/>
-		</figure>
-		</li>
+		return <tr key = {activity.name}>
+		<td>{activity.name}</td>
+		<td> {(activity.dates).join(", ")}</td>
+		</tr>
 	}
 
 	)}
-	</ul>
+	</tbody>
+	</table>
 	</main>
 	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer></div>;
 }
