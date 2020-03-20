@@ -20,14 +20,14 @@ class AdminActivity extends React.Component {
 	}
 
 	deleteActivity(i) {
-       let newArray = this.state.activityList.filter(function(activity, index){
-      if (index === i) 
-        return false;
-       else 
-        return true;
-    })
-    console.log(newArray)
-    this.setState({activityList:newArray});
+		let newArray = this.state.activityList.filter(function(activity, index){
+			if (index === i) 
+				return false;
+			else 
+				return true;
+		})
+		console.log(newArray)
+		this.setState({activityList:newArray});
 
 	}
 
@@ -53,32 +53,32 @@ class AdminActivity extends React.Component {
 		</section>
 		</details>
 
-	{/* Activity tabel*/}
+		{/* Activity tabel*/}
 		<h3> Activities</h3>
-     
-        <table><thead><tr> 
-        <td></td>
+		
+		<table><thead><tr> 
+		<td></td>
 		<td>Event</td>
 		<td>Dates</td>
 		</tr></thead>
 
-        <tbody>
+		<tbody>
 		{/*<ul className="clubEvents">*/}
 
 		{(this.state.activityList).map((activity,i) => {
-			
-		return <tr key = {"activity"+i}>
-		<td><button type="button" id = "Delete" onClick={that.deleteActivity.bind(that,i)}>Delete</button></td>
-		<td>{activity.name} </td>
-		<td> {(activity.dates).join(", ")}</td>
-		</tr>
-	}
+	
+			return <tr key = {"activity"+i}>
+			<td><button type="button" id = "Delete" onClick={that.deleteActivity.bind(that,i)}>Delete</button></td>
+			<td>{activity.name} </td>
+			<td> {(activity.dates).join(", ")}</td>
+			</tr>
+			}
 
-	)}
-	</tbody>
-	</table>
-	</main>
-	<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer></div>;
-}
+		)}
+		</tbody>
+		</table>
+		</main>
+		<footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer></div>;
+	}
 }
 export default AdminActivity;
