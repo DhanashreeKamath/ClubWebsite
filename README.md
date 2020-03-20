@@ -155,11 +155,11 @@ myfunction is called by myObj1 object so it will return its myObj1 values.
 func2 will return {course: "WebSys", students: 31}
 Here func2 is assigned to the method of myObj1 which is bound to the instance of myObj2.Therefore func2() call will return the myObj2 values.(changed the context of function)
 
-![ScreenShot](images/ScreenShot53.png)
+![ScreenShot](images/ScreenShot54.png)
 
 ### (c)
 
-![ScreenShot](images/ScreenShot53.png)
+![ScreenShot](images/ScreenShot55.png)
 
 setTimeout(cs651); 
 SetTimerout() sets a timer which executes a function or specified piece of code once the timer expires. In this case it will execute cs651 function once the timer expires.
