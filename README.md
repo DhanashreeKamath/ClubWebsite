@@ -31,12 +31,6 @@ constructor(props)
 ### (e)
 JSX code of widegts for adding activity
 ``` JSX
-	return <div><main className ="box">
-		<header>
-		<h1 className="fh-custom-font"> Union City Music Club</h1>
-		<h2> Activity Management</h2>
-		</header>
-		<details>
 		<summary>Add Activity</summary>
 		<section id = "loginForm">
 		<label htmlFor="name">Name: </label>
@@ -51,7 +45,7 @@ JSX code of widegts for adding activity
 ```
 
 ### (f)
-event handling function of adminActivity.js which is called when add button is clicked in add activity section
+event handling function of adminActivity.js.  addActivity() function is called when the "add" button is clicked.
 ``` adminActivity.js
 addActivity() {
 		let dateArr = (date.value).split(",")
@@ -118,14 +112,14 @@ IP address returned after running given code is: [ '172.217.164.110' ]
 
 ### (e)
 IP location finder for IP adress mentioned in (e)
-![ScreenShot](images/ScreenShot52.png)
+![ScreenShot](images/ScreenShot53.png)
 
 ## Question 4
 
 ### (a)
 The two purposes that JavaScript ascribe to this keywords are:
 1) It is used to point to an instance of an object from within its own class definition
-2) It is also used to keep track of exection context- which is often based on where a function was called from.
+2) It is also used to keep track of execution context- which is often based on where a function was called from.
 
 ### (b)
 
@@ -143,16 +137,16 @@ func2 = myObj1.method1.bind(myObj2);
 func2(); // this?
 ```
 
-1) myFunction(); 
-*this* will return {parent: Window, opener: null, top: Window, length: 4, frames: Window, …}
-By default *this* should always be the window Object, which referes to the root. When we call console.log(this) from myFunction, as it is invoked by window, *this* value will be window object.
+1) myFunction(); <br/>
+*this* will return {parent: Window, opener: null, top: Window, length: 4, frames: Window, …}<br/>
+By default *this* should always be the window Object, which referes to the root. When we call console.log(this) from myFunction, as it is invoked by window, *this* value will be window object.<br/>
 
-2) myObj1.method1();
-*this* {course: "WebDev", students: 36, method1: ƒ}
+2) myObj1.method1();<br/>
+*this* {course: "WebDev", students: 36, method1: ƒ} <br/>
 myfunction is called by myObj1 object so it will return its myObj1 values.
 
 3) func2();
-func2 will return {course: "WebSys", students: 31}
+func2 will return {course: "WebSys", students: 31} <br/>
 Here func2 is assigned to the method of myObj1 which is bound to the instance of myObj2.Therefore func2() call will return the myObj2 values.(changed the context of function)
 
 ![ScreenShot](images/ScreenShot54.png)
@@ -161,12 +155,12 @@ Here func2 is assigned to the method of myObj1 which is bound to the instance of
 
 ![ScreenShot](images/ScreenShot55.png)
 
-setTimeout(cs651); 
-SetTimerout() sets a timer which executes a function or specified piece of code once the timer expires. In this case it will execute cs651 function once the timer expires.
+setTimeout(cs651); <br/>
+SetTimeout() sets a timer which executes a function or specified piece of code once the timer expires. In this case it will execute cs651 function once the timer expires.
 
 setTimeout(cs351, 0);
-This is not different than previous function becuase, in the previous function delay is not specified and by default it is 0
-here delay is explicitly specifies as 0.
+This is not different than previous function becuase, in the previous function delay is not specified and by default it is 0.
+in this function call delay is explicitly specified as 0.
 
 ### (d)
 ``` javascript
@@ -188,8 +182,10 @@ racingPs = Promise.race(myPs);
 Promise is an object representing the ultimate completion or failure of an asynchronous operation. The below Promise.race(myPs)  method returns promises (myP1,myP2,myP3) that fulfills or rejects as soon as one of the promises fulfills or reject, with the value or reason from that promise.
 
 The promise which returns first is the winner of the "promise race". One of the method to find out the winner in the given code, is to modify 
- Promise.Race with then() which takes callback function to return sucess or failure . 
- ex:racingPs = Promise.race(myPs).then(winner);
+Promise.Race with then() which takes callback function to return sucess or failure . <br/>
+ex:racingPs = Promise.race(myPs).then(winner);
+
+![ScreenShot](images/ScreenShot56.png)
 
 
 
