@@ -31,6 +31,7 @@ constructor(props)
 ### (e)
 JSX code of widegts for adding activity
 ``` JSX
+        <details>
 		<summary>Add Activity</summary>
 		<section id = "loginForm">
 		<label htmlFor="name">Name: </label>
@@ -41,7 +42,6 @@ JSX code of widegts for adding activity
 		<button type="button" id = "Add" onClick = {this.addActivity.bind(this)} >Add</button>
 		</section>
 		</details>
-
 ```
 
 ### (f)
@@ -103,7 +103,7 @@ deleteActivity(i) {
 ![ScreenShot](images/ScreenShot52.png)
 
 ### (c)
- address: '127.0.0.1', this address is used for loopback addresses to the local host.
+ address: '127.0.0.1', this address is used for loopback addresses to the local host.<br/>
  address: '10.0.0.66', used for local communications within a private network.
 
 ### (d)
@@ -139,15 +139,15 @@ func2(); // this?
 
 1) myFunction(); <br/>
 *this* will return {parent: Window, opener: null, top: Window, length: 4, frames: Window, …}<br/>
-By default *this* should always be the window Object, which referes to the root. When we call console.log(this) from myFunction, as it is invoked by window, *this* value will be window object.<br/>
+By default *this* should always be the window Object, which refers to the root. When we call console.log(this) from myFunction, the value for *this* will be the window object as it is invoked by the window.<br/>
 
 2) myObj1.method1();<br/>
 *this* {course: "WebDev", students: 36, method1: ƒ} <br/>
-myfunction is called by myObj1 object so it will return its myObj1 values.
+myfunction is called by "myObj1" object so it will return its myObj1 values.
 
 3) func2();
 func2 will return {course: "WebSys", students: 31} <br/>
-Here func2 is assigned to the method of myObj1 which is bound to the instance of myObj2.Therefore func2() call will return the myObj2 values.(changed the context of function)
+Here func2 is assigned to the method of myObj1 which is bound to the instance of myObj2.Therefore, the call to the function func2() will return the myObj2 values.(changed the context of function)
 
 ![ScreenShot](images/ScreenShot54.png)
 
@@ -159,8 +159,8 @@ setTimeout(cs651); <br/>
 SetTimeout() sets a timer which executes a function or specified piece of code once the timer expires. In this case it will execute cs651 function once the timer expires.
 
 setTimeout(cs351, 0);
-This is not different than previous function becuase, in the previous function delay is not specified and by default it is 0.
-in this function call delay is explicitly specified as 0.
+This isn't different from the previous function becuase, in the previous function delay is not specified and by default it is 0.
+In this function call, delay is explicitly specified as 0.
 
 ### (d)
 ``` javascript
@@ -179,7 +179,7 @@ myP3 = new Promise(function(resolve, reject){
 myPs = [myP1, myP2, myP3];
 racingPs = Promise.race(myPs);
 ```
-Promise is an object representing the ultimate completion or failure of an asynchronous operation. The below Promise.race(myPs)  method returns promises (myP1,myP2,myP3) that fulfills or rejects as soon as one of the promises fulfills or reject, with the value or reason from that promise.
+Promise is an object representing the ultimate completion or failure of an asynchronous operation. The below Promise.race(myPs)  method returns promises (myP1,myP2,myP3) that fulfills or rejects as soon as one of the promises returns a result, with the value or reason from that promise.
 
 The promise which returns first is the winner of the "promise race". One of the method to find out the winner in the given code, is to modify 
 Promise.Race with then() which takes callback function to return sucess or failure . <br/>
