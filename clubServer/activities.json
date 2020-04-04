@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Karaoke Nights",
+    "dates":"January 2nd,February 14th,March 12th, March 17th, April 15th, April 26th,June 9th, June 24rd, July 9th, July 25,August 8th,August 25th"
+  },
+  {
+    "name": "Instrumental classes for kids",
+    "dates":"every monday and tuesday"
+  },
+  {
+    "name": "Vocal Classes", 
+    "dates":"every Saturday and Sunday"
+  },
+  {
+    "name": "Online Classes", 
+    "dates": "every Friday"
+  }
+]

@@ -1,194 +1,228 @@
-# Homework #7 Solution
+# Homework #8 Solution
 **Student Name**:  Dhanashree Kamath Kasaragod
 
 **NetID**: hs4947
 
 ## Question 1
 ### (a)
-Revised directory structure (sub folder admin, guest and admin under ReactClub)
-![ScreenShot](images/ScreenShot46.png)
+* Post HTTP method is used in the request
+
+* HTTP response status code indicate whether a specific HTTP request has been successfully completed. For example: 200 OK (Successful response)
+
+* HTTP version used HTTP/1.1
 
 ### (b)
-Activity administration mockup
-![ScreenShot](images/ScreenShot47.png)
+List the request headers and their values here (copy and paste)
+```
+POST /events/1/232bf20b67?a=25577677&v=1167.2a4546b&to=M1NbN0oCDxFYU0JaXAoZahdKFhUReFNCWlwKGVsPWQAKAFZRRFcdE1NbAkgTEkxbXFdQWAZZWBFcTQAXTVhTXUcNVVgXUQwPTHVfUVpdJVVNClcN&rst=10976&ref=https://bb.csueastbay.edu/ HTTP/1.1
+Host: bam.nr-data.net
+Connection: keep-alive
+Content-Length: 99
+Sec-Fetch-Dest: empty
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+content-type: text/plain
+Accept: */*
+Origin: https://bb.csueastbay.edu
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Referer: https://bb.csueastbay.edu/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: JSESSIONID=b1687da527d0c0db
+```
 
 ### (c)
-We use class component. In order to save state of activities and rerender the newly added activity we need to use class component
-
-after adding activity:
-![ScreenShot](images/ScreenShot48.png)
+List the response headers and their values here (copy and paste)
+```
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: https://bb.csueastbay.edu
+Content-Length: 24
+Content-Type: image/gif
+```
 
 ### (d)
 
-Constructor function of adminActivity.js
-```adminActivity.js
-constructor(props)
-	{
-		super(props);
-		this.state = { activityList:activityList};
-	}
-```
+What server is BlackBoard based on?
+
+Are any cookies set? If so what are they.
+
+
 ### (e)
-JSX code of widegts for adding activity
-``` JSX
-        <details>
-		<summary>Add Activity</summary>
-		<section id = "loginForm">
-		<label htmlFor="name">Name: </label>
-		<input type="text" name="eventname" id="eventname" required placeholder="EventName"/>
-		<label htmlFor="date">Date(s): </label>
-		<input type="text" name="date" id="date" placeholder="Dates"/>
-		
-		<button type="button" id = "Add" onClick = {this.addActivity.bind(this)} >Add</button>
-		</section>
-		</details>
-```
+protocol : https, http
+domain : developer.mozilla.org, www.google.com, 
+port :8282
+path : static/index.html, en-US/docs/Web/JavaScript/Guide/Grammar_and_Types, search
+query : ?q=gaia+mission&rlz=1CYPO_enUS751
+fragment : #Comments
 
 ### (f)
-event handling function of adminActivity.js.  addActivity() function is called when the "add" button is clicked.
-``` adminActivity.js
-addActivity() {
-		let dateArr = (date.value).split(",")
-		let newEventDict = {name:eventname.value,dates: dateArr};
-		this.setState({activityList:this.state.activityList.concat(newEventDict)});
-		
-	}
-```
+
 ## Question 2 
 
 ### (a)
-prior to the deletion of event:
-![ScreenShot](images/ScreenShot49.png)
-
-after deleting some event:
-![ScreenShot](images/ScreenShot50.png)
-
+![ScreenShot](images/ScreenShot57.png)
 
 ### (b)
-JSX in adminActivity for calling deleteEvent() function:
-```JSX
-{(this.state.activityList).map((activity,i) => {
-	
-	return <tr key = {"activity"+i}>
-	<td><button type="button" id = "Delete" onClick={that.deleteActivity.bind(that,i)}>Delete</button></td>
-	<td>{activity.name} </td>
-	<td> {(activity.dates).join(", ")}</td>
-	</tr>
-}
-
-```
-I have not used any sub-components. All the functionality is in the same component.
+![ScreenShot](images/ScreenShot58.png)
 
 ### (c)
-function to deletActivity in adminActivity.js to delete activity
-``` javascript
-deleteActivity(i) {
-		let newArray = this.state.activityList.filter(function(activity, index){
-			if (index === i) 
-				return false;
-			else 
-				return true;
-		})
-		console.log(newArray)
-		this.setState({activityList:newArray});
+![ScreenShot](images/ScreenShot59.png)
+``` combineServer.js
+const express = require('express');
+const app = express();
 
-	}
+app.get('/date', function (req, res) {
+    
+   let name = "Dhanashree Kamath Kasaragod";
+    	let datetime = new Date();
+
+    res.send(`Name: ${name}, 
+        Date and Time :${datetime}`);
+});
+
+app.get('/netID', function (req, res) {
+    
+   let name = "Dhanashree Kamath Kasaragod";
+   let netID = "hs4947";
+
+    res.send(`Name: ${name}, 
+        NetID :${netID}`);
+});
+
+host = '127.73.73.11';
+port = '1711';
+app.listen(port, host, function () {
+console.log(`Example app listening on IPv4: ${host}:${port}`);
+});
 ```
+
 ## Question 3
 
 ### (a)   
-![ScreenShot](images/ScreenShot51.png)
+```clubServer.js
+const express = require('express');
+const app = express();
+
+app.get('/activities', function (req, res) {
+    
+    let activityJson = require('./activities.json');
+
+    //res.send(`${JSON.stringify(activityJson)}`);
+    res.json(activityJson);
+});
+
+
+host = '127.0.0.11';
+port = '1711';
+app.listen(port, host, function () {
+console.log(`Example app listening on IPv4: ${host}:${port}`);
+});
+
+```
+![ScreenShot](images/ScreenShot60.png)
 
 ### (b)
-![ScreenShot](images/ScreenShot52.png)
-
-### (c)
- address: '127.0.0.1', this address is used for loopback addresses to the local host.<br/>
- address: '10.0.0.66', used for local communications within a private network.
-
-### (d)
-
-IP address returned after running given code is: [ '172.217.164.110' ]
-
-### (e)
-IP location finder for IP adress mentioned in (e)
-![ScreenShot](images/ScreenShot53.png)
-
+![ScreenShot](images/ScreenShot61.png)
+```getActivityTest.js
+const rp = require('request-promise-native');
+let site = {
+    uri: 'http://127.0.0.11:1711/activities',
+    method: 'GET', // What does this do?
+    resolveWithFullResponse: false
+};
+rp(site).then(res => {
+	let a = JSON.parse(res)
+	let count = 1
+	a.map(b => {
+		console.log("Event "+count+" Name:"+b.name+"; Dates:"+b.dates);
+		count++;
+	})
+})
+```
 ## Question 4
 
 ### (a)
-The two purposes that JavaScript ascribe to this keywords are:
-1) It is used to point to an instance of an object from within its own class definition
-2) It is also used to keep track of execution context- which is often based on where a function was called from.
+code of newly added interface 
+```clubServer.js
+app.post('/activities', express.json(), function(req, res) {
+   activityJson.push(req.body)
+   console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
+   res.json(activityJson)
 
-### (b)
-
-```javascript
-myObj1 = {course: "WebDev", students: 36};
-myObj2 = {course: "WebSys", students: 31};
-var myFunction = function () {
-  console.log(this);
-};
-
-myFunction(); // this?
-myObj1.method1 = myFunction;
-myObj1.method1(); // this?
-func2 = myObj1.method1.bind(myObj2);
-func2(); // this?
+});
 ```
-
-1) myFunction(); <br/>
-*this* will return {parent: Window, opener: null, top: Window, length: 4, frames: Window, …}<br/>
-By default *this* should always be the window Object, which refers to the root. When we call console.log(this) from myFunction, the value for *this* will be the window object as it is invoked by the window.<br/>
-
-2) myObj1.method1();<br/>
-*this* {course: "WebDev", students: 36, method1: ƒ} <br/>
-myfunction is called by "myObj1" object so it will return its myObj1 values.
-
-3) func2();
-func2 will return {course: "WebSys", students: 31} <br/>
-Here func2 is assigned to the method of myObj1 which is bound to the instance of myObj2.Therefore, the call to the function func2() will return the myObj2 values.(changed the context of function)
-
-![ScreenShot](images/ScreenShot54.png)
+### (b)
+![ScreenShot](images/ScreenShot62.png)
 
 ### (c)
+updated function to handle errors
+```clubServer.js 
+app.use(function activityErrors(err, req, res, next) {
+    // prepare and send error response here, i.e.,
+    // set an error code and send JSON message
+    res.status(413).send(errorResponse)
+    console.log(JSON.stringify(err));
+    return;
+  })
 
-![ScreenShot](images/ScreenShot55.png)
-
-setTimeout(cs651); <br/>
-SetTimeout() sets a timer which executes a function or specified piece of code once the timer expires. In this case it will execute cs651 function once the timer expires.
-
-setTimeout(cs351, 0);
-This isn't different from the previous function becuase, in the previous function delay is not specified and by default it is 0.
-In this function call, delay is explicitly specified as 0.
+```
 
 ### (d)
-``` javascript
-function winner(name) {
-  console.log(`The winner is ${name}`);
-}
-myP1 = new Promise(function(resolve, reject){
-    setTimeout(()=>resolve("P1"), 1000*Math.random());
-});
-myP2 = new Promise(function(resolve, reject){
-    setTimeout(()=>resolve("P2"), 1000*Math.random());
-});
-myP3 = new Promise(function(resolve, reject){
-    setTimeout(()=>resolve("P3"), 1000*Math.random());
-});
-myPs = [myP1, myP2, myP3];
-racingPs = Promise.race(myPs);
+![ScreenShot](images/ScreenShot63.png)
+
+``` addActivityTest.js
+rp(getCall).then(res => {
+	console.log("Initial Get of activities");
+	let parsedJsonactivity = JSON.parse(res)
+	console.log("Currently "+parsedJsonactivity.length+" activities");
+	// let count = 1
+	// parsedJsonactivity.map(activity => {
+	// 	console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
+	// 	count++;
+	// })
+	// console.log("-----------------------------")
+	return rp(postCall)
+}).then(res => {
+console.log("After first Good activity Post")
+console.log("Currently "+res.length+" activities");
+// let count = 1;
+//  res.map(activity => {
+// 		console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
+// 		count++;
+// 	})
+//  console.log("------------------")
+ return rp(postFailureCall)
+}).catch(function(err){
+	console.log("After first bad activity post");
+	console.log("Error occurred:"+err);
+	return rp(postCall)
+}).then(res =>{
+	console.log("After Another Good activity Post")
+	console.log("Currently "+res.length+" activities");
+})
 ```
-Promise is an object representing the ultimate completion or failure of an asynchronous operation. The below Promise.race(myPs)  method returns promises (myP1,myP2,myP3) that fulfills or rejects as soon as one of the promises returns a result, with the value or reason from that promise.
+## Question 5
 
-The promise which returns first is the winner of the "promise race". One of the method to find out the winner in the given code, is to modify 
-Promise.Race with then() which takes callback function to return sucess or failure . <br/>
-ex:racingPs = Promise.race(myPs).then(winner);
+### (a)
 
-![ScreenShot](images/ScreenShot56.png)
+code after delete interface
+``` codeServer.js
+app.delete('/activities/:i', function(req, res) {
+ 
+ let id = req.params.i;
+ console.log("Trying to delete activity "+ id);
+ if (id >= activityJson.length) {
+   console.log("Bad activity deletion index: "+ id);
+  res.status(400).send(errorResponse2);
+ } else {
+ activityJson.splice(id, 1);
+ res.json(activityJson);
+}
 
+});
 
-
-
+```
+### (b)
+![ScreenShot](images/ScreenShot64.png)
 
 
