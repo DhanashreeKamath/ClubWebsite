@@ -14,7 +14,8 @@ let deleteCall = {
 let badDeleteCall = {
     url: 'http://127.0.0.11:1711/activities/82',
     method: 'DELETE', // What does this do?
-    resolveWithFullResponse: false
+    resolveWithFullResponse: false,
+    json:true
 };
 
 let anotherDeleteCall = {
