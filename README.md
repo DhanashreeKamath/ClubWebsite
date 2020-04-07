@@ -227,33 +227,21 @@ app.use(function activityErrors(err, req, res, next) {
 
 ``` addActivityTest.js
  rp(getCall).then(res => {
-	console.log("Initial Get of activities");
-	let parsedJsonactivity = JSON.parse(res)
-	console.log("Currently "+parsedJsonactivity.length+" activities");
-	// let count = 1
-	// parsedJsonactivity.map(activity => {
-	// 	console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
-	// 	count++;
-	// })
-	// console.log("-----------------------------")
-	return rp(postCall)
+  console.log("Initial Get of activities");
+  let parsedJsonactivity = JSON.parse(res)
+  printActivities(parsedJsonactivity);
+  return rp(postCall)
 }).then(res => {
-console.log("After first Good activity Post")
-console.log("Currently "+res.length+" activities");
-// let count = 1;
-//  res.map(activity => {
-// 		console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
-// 		count++;
-// 	})
-//  console.log("------------------")
- return rp(postFailureCall)
+  console.log("After first Good activity Post")
+  printActivities(res);
+  return rp(postFailureCall)
 }).catch(function(err){
-	console.log("After first bad activity post");
-	console.log("Error occurred:"+err);
-	return rp(postCall)
+  console.log("After first bad activity post");
+  console.log("Error occurred:"+err);
+  return rp(postCall)
 }).then(res =>{
-	console.log("After Another Good activity Post")
-	console.log("Currently "+res.length+" activities");
+  console.log("After Another Good activity Post")
+  printActivities(res);
 })
 ```
 ## Question 5
@@ -262,13 +250,17 @@ console.log("Currently "+res.length+" activities");
 
 code after delete interface
 ``` codeServer.js
+let errorResponse2 = {"error": true, "message":"bad index"}
+
+
 app.delete('/activities/:i', function(req, res) {
 
  let id = req.params.i
  console.log("Trying to delete activity "+ id)
- if (id >= activityJson.length) {
+ if (id <0 ||id >= activityJson.length) {
    console.log("Bad activity deletion index: "+ id)
-   next()
+   //res.status(400).send(errorResponse2);
+   next();
  } else {
   activityJson.splice(id, 1)
   res.json(activityJson)
@@ -278,10 +270,12 @@ app.delete('/activities/:i', function(req, res) {
 
 app.use(function deleteErrorHandling(err, req, res, next) {
   if(req.route.methods.delete == true){
-    res.status(400).send(errorResponse2)
+    res.status(400).json(errorResponse2);
   } else {
     next(err)
   }
+
+})
 
 ```
 ### (b)

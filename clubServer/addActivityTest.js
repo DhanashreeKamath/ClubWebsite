@@ -1,4 +1,5 @@
 const rp = require('request-promise-native');
+const verbose = false;
 
 let getCall = {
     url: 'http://127.0.0.11:1711/activities',
@@ -33,26 +34,27 @@ let postFailureCall = {
 	}]
 }
 
+function printActivities(jsonData)
+{
+	console.log(`Currently ${jsonData.length} activities`);
+	if(!verbose)
+	{
+		return;
+	}
+	let count = 1;
+    jsonData.map(activity => {
+		console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
+		count++;
+	})
+}
 rp(getCall).then(res => {
 	console.log("Initial Get of activities");
 	let parsedJsonactivity = JSON.parse(res)
-	console.log("Currently "+parsedJsonactivity.length+" activities");
-	// let count = 1
-	// parsedJsonactivity.map(activity => {
-	// 	console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
-	// 	count++;
-	// })
-	// console.log("-----------------------------")
+	printActivities(parsedJsonactivity);
 	return rp(postCall)
 }).then(res => {
 console.log("After first Good activity Post")
-console.log("Currently "+res.length+" activities");
-// let count = 1;
-//  res.map(activity => {
-// 		console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
-// 		count++;
-// 	})
-//  console.log("------------------")
+printActivities(res);
  return rp(postFailureCall)
 }).catch(function(err){
 	console.log("After first bad activity post");
@@ -60,6 +62,6 @@ console.log("Currently "+res.length+" activities");
 	return rp(postCall)
 }).then(res =>{
 	console.log("After Another Good activity Post")
-	console.log("Currently "+res.length+" activities");
+	printActivities(res);
 })
 	

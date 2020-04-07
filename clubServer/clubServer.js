@@ -26,9 +26,10 @@ app.delete('/activities/:i', function(req, res) {
 
  let id = req.params.i
  console.log("Trying to delete activity "+ id)
- if (id >= activityJson.length) {
+ if (id <0 ||id >= activityJson.length) {
    console.log("Bad activity deletion index: "+ id)
-   next()
+   //res.status(400).send(errorResponse2);
+   next();
  } else {
   activityJson.splice(id, 1)
   res.json(activityJson)
@@ -38,7 +39,7 @@ app.delete('/activities/:i', function(req, res) {
 
 app.use(function deleteErrorHandling(err, req, res, next) {
   if(req.route.methods.delete == true){
-    res.status(400).send(errorResponse2)
+    res.status(400).json(errorResponse2);
   } else {
     next(err)
   }
