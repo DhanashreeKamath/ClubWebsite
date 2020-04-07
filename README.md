@@ -66,12 +66,12 @@ Set-Cookie: BbRouter=expires:1586113700,id:4A08CE40AF44591E62F374FDEE9AA1AD,sign
 
 
 ### (e)
-protocol : https, http
-domain : developer.mozilla.org, www.google.com, 
-port :8282
-path : static/index.html, en-US/docs/Web/JavaScript/Guide/Grammar_and_Types, /search
-query : ?q=gaia+mission&rlz=1CYPO_enUS751
-fragment : #Comments
+protocol : https, http  
+domain : developer.mozilla.org, www.google.com,  
+port :8282  
+path : static/index.html, en-US/docs/Web/JavaScript/Guide/Grammar_and_Types, /search  
+query : ?q=gaia+mission&rlz=1CYPO_enUS751  
+fragment : #Comments  
 
 ## Question 2 
 
