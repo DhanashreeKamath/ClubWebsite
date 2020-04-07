@@ -69,7 +69,9 @@ Set-Cookie: BbRouter=expires:1586113700,id:4A08CE40AF44591E62F374FDEE9AA1AD,sign
 protocol : https, http  
 domain : developer.mozilla.org, www.google.com,  
 port :8282  
-path : static/index.html, en-US/docs/Web/JavaScript/Guide/Grammar_and_Types, /search  
+path : static/index.html,   
+       en-US/docs/Web/JavaScript/Guide/Grammar_and_Types,  
+       /search   
 query : ?q=gaia+mission&rlz=1CYPO_enUS751  
 fragment : #Comments  
 
@@ -226,6 +228,20 @@ app.use(function activityErrors(err, req, res, next) {
 ![ScreenShot](images/ScreenShot63.png)
 
 ``` addActivityTest.js
+function printActivities(jsonData)
+{
+  console.log(`Currently ${jsonData.length} activities`);
+  if(!verbose)
+  {
+    return;
+  }
+  let count = 1;
+  jsonData.map(activity => {
+    console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
+    count++;
+  })
+}
+
  rp(getCall).then(res => {
   console.log("Initial Get of activities");
   let parsedJsonactivity = JSON.parse(res)
