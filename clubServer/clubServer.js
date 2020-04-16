@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const users = require('./clubUsersHash.json');
+const bcrypt = require('bcryptjs');
 
 let activityJson = require('./activities.json');
 
@@ -37,16 +39,46 @@ app.delete('/activities/:i', function(req, res) {
 
 });
 
-app.use(function deleteErrorHandling(err, req, res, next) {
-  if(req.route.methods.delete == true){
-    res.status(400).json(errorResponse2);
-  } else {
-    next(err)
-  }
+app.post('/login', express.json(), function(req, res) {
+ 
+    let email = req.body.email; 
+    let password = req.body.password;
 
-})
+    //Find user in json by comparing email
+    let user = users.find(function(user){
+       return user.email === email;
+    });
+    
+    if(!user){
+       res.status(401).json ({error:true, message:"User/password error"});
+       return;
+    }
 
-app.use(function activityErrors(err, req, res, next) {
+    //Match password using bcrypt
+    let verified = bcrypt.compareSync(password, user.passHash)
+     if(verified) {
+       let newUserInfo = {"firstName":user.firstName,"lastName":user.lastName,"email":user.email,"role":user.role};
+       console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
+       res.json(newUserInfo);
+     }
+     else{
+         res.status(401).json ({error:true, message:"User/password error"});
+       return;
+     } 
+
+  });
+
+
+  app.use(function deleteErrorHandling(err, req, res, next) {
+    if(req.route.methods.delete == true){
+      res.status(400).json(errorResponse2);
+    } else {
+      next(err)
+    }
+
+  })
+
+  app.use(function activityErrors(err, req, res, next) {
     // prepare and send error response here, i.e.,
     // set an error code and send JSON message
     res.status(413).send(errorResponse)
@@ -54,8 +86,8 @@ app.use(function activityErrors(err, req, res, next) {
     return
   });
 
-host = '127.0.0.11';
-port = '1711';
-app.listen(port, host, function () {
-  console.log(`Example app listening on IPv4: ${host}:${port}`);
-});
+  host = '127.0.0.1';
+  port = '1711';
+  app.listen(port, host, function () {
+    console.log(`Example app listening on IPv4: ${host}:${port}`);
+  });
