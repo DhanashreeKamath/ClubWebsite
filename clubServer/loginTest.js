@@ -2,14 +2,14 @@ const rp = require('request-promise-native');
 let cookiejar = rp.jar();
 
 let getActivities = {
-    url: 'http://127.0.0.1:1711/activities',
+    url: 'http://127.0.0.11:1711/activities',
     method: 'GET', // What does this do?
     resolveWithFullResponse: false,
     jar:cookiejar
 };
 
 let postGoodEmailPass = {
-    url: 'http://127.0.0.1:1711/login',
+    url: 'http://127.0.0.11:1711/login',
     method: 'POST', // What does this do?
     json: true,
     body: {
@@ -20,7 +20,7 @@ let postGoodEmailPass = {
 };
 
 let postGoodEmailIncorrectPass = {
-    url: 'http://127.0.0.1:1711/login',
+    url: 'http://127.0.0.11:1711/login',
     method: 'POST', // What does this do?
     json: true,
     body: {
@@ -31,7 +31,7 @@ let postGoodEmailIncorrectPass = {
 };
 
 let postBadEmailIncorrectPass = {
-    url: 'http://127.0.0.1:1711/login',
+    url: 'http://127.0.0.11:1711/login',
     method: 'POST', // What does this do?
     json: true,
     body: {
@@ -41,11 +41,13 @@ let postBadEmailIncorrectPass = {
     jar: cookiejar
 };
 let logoutCall = {
-    url: 'http://127.0.0.1:1711/logout',
+    url: 'http://127.0.0.11:1711/logout',
     method: 'GET', // What does this do?
     resolveWithFullResponse: false,
     jar: cookiejar
 };
+
+
 
 async function tests()
 {

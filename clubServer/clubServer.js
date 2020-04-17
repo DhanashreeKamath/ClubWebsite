@@ -33,7 +33,27 @@ app.get('/activities', function (req, res) {
     res.json(activityJson);
   });
 
-app.post('/activities', express.json({ limit: "44b"}), function(req, res) {
+// Use this middleware to restrict paths to only logged in users
+const checkCustomerMiddleware = function (req, res, next) {
+    if (req.session.user.role === "guest") {
+        res.status(401).json({error: "Not permitted"});
+        } else {
+        console.log(`Session info: ${JSON.stringify(req.session)} \n`);
+        next();
+    }
+};
+
+// User this middlewave to restrict paths only to admins
+const checkAdminMiddleware = function (req, res, next) {
+    if (req.session.user.role !== "admin") {
+        res.status(401).json({error: "Not permitted"});
+    } else {
+        next();
+    }
+};
+
+
+app.post('/activities',checkAdminMiddleware,express.json({ limit: "44b"}), function(req, res) {
   if(Array.isArray(req.body)) {
     req.body.map(x => activityJson.push(x));
   } else {
@@ -43,6 +63,12 @@ app.post('/activities', express.json({ limit: "44b"}), function(req, res) {
  res.json(activityJson);
 
 });
+
+app.get('/users',checkAdminMiddleware, function (req, res) {
+    //res.send(`${JSON.stringify(activityJson)}`);
+    delete users.passHash;
+    res.json(users);
+  });
 
 app.delete('/activities/:i', function(req, res) {
 
@@ -108,7 +134,6 @@ app.post('/login', express.json(), function(req, res) {
     })
 });     
 
-
   app.use(function deleteErrorHandling(err, req, res, next) {
     if(req.route.methods.delete == true){
       res.status(400).json(errorResponse2);
@@ -126,7 +151,7 @@ app.post('/login', express.json(), function(req, res) {
     return
   });
 
-  host = '127.0.0.1';
+  host = '127.0.0.11';
   port = '1711';
   app.listen(port, host, function () {
     console.log(`Example app listening on IPv4: ${host}:${port}`);
