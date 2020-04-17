@@ -123,37 +123,3 @@ rp(loginAsAdmin).then(res => {
   //Logout 
   console.log(`After Logout ,Cookies: ${cookiejar.getCookieString(logoutCall.url)}`);
 });
-
-
-
-// function printActivities(jsonData)
-// {
-// 	console.log(`Currently ${jsonData.length} activities`);
-// 	if(!verbose)
-// 	{
-// 		return;
-// 	}
-// 	let count = 1;
-//     jsonData.map(activity => {
-// 		console.log("activity "+count+" Name:"+activity.name+"; Dates:"+activity.dates);
-// 		count++;
-// 	})
-// }
-
-// rp(getCall).then(res => {
-// 	console.log("Initial Get of activities");
-// 	let parsedJsonactivity = JSON.parse(res)
-// 	printActivities(parsedJsonactivity);
-// 	return rp(postCall)
-// }).then(res => {
-// console.log("After first Good activity Post")
-// printActivities(res);
-//  return rp(postFailureCall)
-// }).catch(function(err){
-// 	console.log("After first bad activity post");
-// 	console.log("Error occurred:"+err);
-// 	return rp(postCall)
-// }).then(res =>{
-// 	console.log("After Another Good activity Post")
-// 	printActivities(res);
-// })
