@@ -1,12 +1,32 @@
 const express = require('express');
 const app = express();
 const users = require('./clubUsersHash.json');
+var session = require('express-session')
 const bcrypt = require('bcryptjs');
 
 let activityJson = require('./activities.json');
 
 let errorResponse = {"error": true, "message":"bad activity"}
 let errorResponse2 = {"error": true, "message":"bad index"}
+
+const cookieName = "hs4947Clubsid"; // Session ID cookie name, use this to delete cookies too.
+app.use(session({
+    secret: 'club website development',
+    resave: false,
+    saveUninitialized: false,
+    name: cookieName // Sets the name of the cookie used by the session middleware
+}));
+// This initializes session state
+const setUpSessionMiddleware = function (req, res, next) {
+    console.log(`session object: ${JSON.stringify(req.session)}`);
+    console.log(`session id: ${req.session.id}`);
+    if (!req.session.user) {
+        req.session.user = {role: "guest"};
+    };
+    next();
+};
+
+app.use(setUpSessionMiddleware);
 
 app.get('/activities', function (req, res) {
     //res.send(`${JSON.stringify(activityJson)}`);
@@ -57,9 +77,18 @@ app.post('/login', express.json(), function(req, res) {
     //Match password using bcrypt
     let verified = bcrypt.compareSync(password, user.passHash)
      if(verified) {
-       let newUserInfo = {"firstName":user.firstName,"lastName":user.lastName,"email":user.email,"role":user.role};
-       console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
-       res.json(newUserInfo);
+
+       let oldInfo = req.session.user;
+        req.session.regenerate(function (err) {
+            if (err) {console.log(err);}
+            let newUserInfo = Object.assign(oldInfo, user);
+            delete newUserInfo.passHash;
+            req.session.user = newUserInfo;
+            res.json(newUserInfo);
+        });
+       // let newUserInfo = {"firstName":user.firstName,"lastName":user.lastName,"email":user.email,"role":user.role};
+       // console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
+       // res.json(newUserInfo);
      }
      else{
          res.status(401).json ({error:true, message:"User/password error"});
@@ -67,6 +96,17 @@ app.post('/login', express.json(), function(req, res) {
      } 
 
   });
+
+  app.get('/logout', function (req, res) {
+    let options = req.session.cookie;
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.clearCookie(cookieName, options); // the cookie name and options
+        res.json({message: "Goodbye"});
+    })
+});     
 
 
   app.use(function deleteErrorHandling(err, req, res, next) {
