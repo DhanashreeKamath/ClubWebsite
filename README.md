@@ -89,6 +89,85 @@ app.post('/login', express.json(), function(req, res) {
   });
 ```
 ### (b)
+``` loginTest.js
+const rp = require('request-promise-native');
+let cookiejar = rp.jar();
+
+let getActivities = {
+    url: 'http://127.0.0.11:1711/activities',
+    method: 'GET', // What does this do?
+    resolveWithFullResponse: false,
+    jar:cookiejar
+};
+
+let postGoodEmailPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+    	email: "tirrivees1820@outlook.com",
+    	password: "49OqspUq"
+    },
+    jar: cookiejar
+};
+
+let postGoodEmailIncorrectPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+        email: "chihuahua1899@gmail.com",
+        password: "Ckp12311"
+    },
+    jar: cookiejar
+};
+
+let postBadEmailIncorrectPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+        email: "user@email.com",
+        password: "Ckp12311"
+    },
+    jar: cookiejar
+};
+let logoutCall = {
+    url: 'http://127.0.0.11:1711/logout',
+    method: 'GET', // What does this do?
+    resolveWithFullResponse: false,
+    jar: cookiejar
+};
+
+async function tests()
+{
+    //Call to check good email and password
+    try {
+        let res = await rp(postGoodEmailPass);
+        console.log("Good login test Results :",JSON.stringify(res));
+    }
+    catch (e) {
+        console.log(e);
+    }
+    //Call to check good email and password
+     try {
+        let res = await rp(postBadEmailIncorrectPass);
+        //console.log("Bad login error :",JSON.stringify(res));
+    }
+    catch (e) {
+         console.log("Bad email login error :",e.message);
+    }
+    //Call to check good email and incorrect password
+     try {
+        let res = await rp(postGoodEmailIncorrectPass);
+    }
+    catch (e) {
+        console.log("Bad password login error :",e.message);
+       // console.log(e);
+    }
+}
+tests();
+```
 ![ScreenShot](images/ScreenShot66.png)
 
 ## Question 3
@@ -302,7 +381,7 @@ app.post('/activities',checkAdminMiddleware,express.json({ limit: "44b"}), funct
 ```
 
 ### (b)
-//Updated addActivity.js file  
+Updated addActivity.js file  
 
 ``` addActivityTest.js
 const rp = require('request-promise-native');
@@ -387,6 +466,7 @@ rp(loginAsAdmin).then(res => {
 }).then(res => {
   //Add activity and get the updated number of activities
   console.log(`After add number of activities:  ${res.length}`);
+  console.log(`Adimin Login, Cookies: ${cookiejar.getCookieString(loginAsAdmin.url)}`);
   return rp(logoutCall)
 }).then(res=> {
   //Logout 

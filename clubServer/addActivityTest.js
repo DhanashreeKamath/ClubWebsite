@@ -81,6 +81,7 @@ rp(loginAsAdmin).then(res => {
 }).then(res => {
 	//Add activity and get the updated number of activities
 	console.log(`After add number of activities:  ${res.length}`);
+  console.log(`Adimin Login, Cookies: ${cookiejar.getCookieString(loginAsAdmin.url)}`);
 	return rp(logoutCall)
 }).then(res=> {
   //Logout 

@@ -100,3 +100,31 @@ async function tests()
 }
 
 tests();
+//...........Second Question Test.........
+/*async function tests()
+{
+    //Call to check good email and password
+    try {
+        let res = await rp(postGoodEmailPass);
+        console.log("Good login test Results :",JSON.stringify(res));
+    }
+    catch (e) {
+        console.log(e);
+    }
+    //Call to check good email and password
+     try {
+        let res = await rp(postBadEmailIncorrectPass);
+        //console.log("Bad login error :",JSON.stringify(res));
+    }
+    catch (e) {
+         console.log("Bad email login error :",e.message);
+    }
+    //Call to check good email and incorrect password
+     try {
+        let res = await rp(postGoodEmailIncorrectPass);
+    }
+    catch (e) {
+        console.log("Bad password login error :",e.message);
+       // console.log(e);
+    }
+}*/
