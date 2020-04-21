@@ -67,6 +67,7 @@ let logoutCall = {
     jar: cookiejar
 };
 
+
 //Test 1 : Admin login, add activity
 rp(loginAsAdmin).then(res => {
 	//Call to login with "admin" role
@@ -86,8 +87,8 @@ rp(loginAsAdmin).then(res => {
   console.log(`After Logout ,Cookies: ${cookiejar.getCookieString(logoutCall.url)}`);
   return rp(loginAsMember)
 }).then(res=> {
-   //Test 2 : Member login, Try to add activity
-  //Login as "member"
+  //  Test 2 : Member login, Try to add activity
+  // Login as "member"
   console.log("Add Activity Test2: Member Login");
   console.log(`Member login ,Cookies: ${cookiejar.getCookieString(loginAsMember.url)}`);
   return rp(getCall)
@@ -109,8 +110,8 @@ rp(loginAsAdmin).then(res => {
   console.log(`After Logout ,Cookies: ${cookiejar.getCookieString(logoutCall.url)}`);
   return rp(getCall);
 }).then(res => {
-	//Test 3 : Guest user, Try to add activity
-	//Call to get number of activities
+	// Test 3 : Guest user, Try to add activity
+	// Call to get number of activities
 	console.log("Add Activity Test3: Guest");
 	console.log(`Number of activities:  ${res.length}`);
 	return rp(postCall)

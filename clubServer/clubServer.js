@@ -33,17 +33,17 @@ app.get('/activities', function (req, res) {
     res.json(activityJson);
   });
 
-// Use this middleware to restrict paths to only logged in users
-const checkCustomerMiddleware = function (req, res, next) {
-    if (req.session.user.role === "guest") {
-        res.status(401).json({error: "Not permitted"});
-        } else {
-        console.log(`Session info: ${JSON.stringify(req.session)} \n`);
-        next();
-    }
-};
+// // Use this middleware to restrict paths to only logged in users
+// const checkCustomerMiddleware = function (req, res, next) {
+//     if (req.session.user.role === "guest") {
+//         res.status(401).json({error: "Not permitted"});
+//         } else {
+//         console.log(`Session info: ${JSON.stringify(req.session)} \n`);
+//         next();
+//     }
+// };
 
-// User this middlewave to restrict paths only to admins
+// User this middleware to restrict paths only to admins
 const checkAdminMiddleware = function (req, res, next) {
     if (req.session.user.role !== "admin") {
         res.status(401).json({error: "Not permitted"});
@@ -53,7 +53,7 @@ const checkAdminMiddleware = function (req, res, next) {
 };
 
 
-app.post('/activities',checkAdminMiddleware,express.json({ limit: "44b"}), function(req, res) {
+app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
   if(Array.isArray(req.body)) {
     req.body.map(x => activityJson.push(x));
   } else {
@@ -66,8 +66,11 @@ app.post('/activities',checkAdminMiddleware,express.json({ limit: "44b"}), funct
 
 app.get('/users',checkAdminMiddleware, function (req, res) {
     //res.send(`${JSON.stringify(activityJson)}`);
-    delete users.passHash;
-    res.json(users);
+    let allUsers = JSON.parse(JSON.stringify(users));
+    allUsers.map(user => {
+    delete user.passHash});
+    res.json(allUsers);
+    //res.json(users)
   });
 
 app.delete('/activities/:i', function(req, res) {
@@ -94,6 +97,8 @@ app.post('/login', express.json(), function(req, res) {
     let user = users.find(function(user){
        return user.email === email;
     });
+
+    console.log(user)
     
     if(!user){
        res.status(401).json ({error:true, message:"User/password error"});
@@ -146,6 +151,7 @@ app.post('/login', express.json(), function(req, res) {
   app.use(function activityErrors(err, req, res, next) {
     // prepare and send error response here, i.e.,
     // set an error code and send JSON message
+    console.log(err)
     res.status(413).send(errorResponse)
     console.log(JSON.stringify(err))
     return

@@ -48,110 +48,55 @@ let logoutCall = {
 };
 
 
-
 async function tests()
 {
     //Test 1 check 1)call activities 2) call post good login (correct email, password), 3) logout.........
     try {
         //...........call activities........
         console.log("Login Test 1: GoodLogin");
-        let res = await rp(getActivities);
+        let res1 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-
-    //Call to check good email and password
-    try {
-        //...........good login........
-        let res = await rp(postGoodEmailPass);
-        console.log("Good login test Results :",JSON.stringify(res));
+        //Call to check good email and password
+         //...........good login........
+        let res2 = await rp(postGoodEmailPass);
+        console.log("Good login test Results :",JSON.stringify(res2));
         console.log(`After Good Login ,Cookies: ${cookiejar.getCookieString(postGoodEmailPass.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-    //Logout call
-    try {
-        //...........log out........
-        let res = await rp(logoutCall);
+         //Logout call
+        let res3 = await rp(logoutCall);
         //console.log("Good login test Results :",JSON.stringify(res));
         console.log(`After Logout ,Cookies: ${cookiejar.getCookieString(logoutCall.url)}`);
     }
     catch (e) {
         console.log(e);
     }
+
     //Test 2 check 1)call activities 2) call post bad login (incorrect email, password)....
     try {
         //...........call activities........
         console.log("Login Test 2: Bad Email");
-        let res = await rp(getActivities);
+        let res4 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
+         //...........bad login with bad email........
+        let res5 = await rp(postBadEmailIncorrectPass);
     }
     catch (e) {
-        console.log(e);
+        console.log("Bad email login error :",e.message);
+        console.log(`After Login Test 2 ,Cookies: ${cookiejar.getCookieString(postBadEmailIncorrectPass.url)}`);
     }
-    //Call to check bad email and password
-    try {
-        //...........bad login with bad email........
-        let res = await rp(postBadEmailIncorrectPass);
-    }
-    catch (e) {
-       console.log("Bad email login error :",e.message);
-       console.log(`After Login Test 2 ,Cookies: ${cookiejar.getCookieString(postBadEmailIncorrectPass.url)}`);
-   }
-   
+    
      //Test 3 check 1) call post bad login (correct email, incorrectpassword)........
      //Call to check good email and incorrect password
      try {
         //...........call activities........
         console.log("Login Test 3: Bad Password");
-        let res = await rp(getActivities);
+        let res6 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-     try {
-        let res = await rp(postGoodEmailIncorrectPass);
+        let res7 = await rp(postGoodEmailIncorrectPass);
     }
     catch (e) {
         console.log("Bad password login error :",e.message);
         console.log(`After Login Test 3 ,Cookies: ${cookiejar.getCookieString(postGoodEmailIncorrectPass.url)}`);
     }
 }
-
-//...........Second Question Test.........
-/*async function tests()
-{
-    //Call to check good email and password
-    try {
-        let res = await rp(postGoodEmailPass);
-        console.log("Good login test Results :",JSON.stringify(res));
-    }
-    catch (e) {
-        console.log(e);
-    }
-    //Call to check good email and password
-     try {
-        let res = await rp(postBadEmailIncorrectPass);
-        //console.log("Bad login error :",JSON.stringify(res));
-    }
-    catch (e) {
-         console.log("Bad email login error :",e.message);
-    }
-
-    //Call to check good email and incorrect password
-     try {
-        let res = await rp(postGoodEmailIncorrectPass);
-    }
-    catch (e) {
-        console.log("Bad password login error :",e.message);
-       // console.log(e);
-    }
-
-}*/
-
 
 tests();

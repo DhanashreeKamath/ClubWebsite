@@ -44,8 +44,10 @@ Few entries to of the clubUsersHash.json
     "passHash": "$2a$13$N5lekEZjJ0lFSHm5HsEgYudCFDDWmryj.zp7Ebrbsnxq17yPuhX3u",
     "role": "member"
   },
-  ... .... 
-  ... ... 
+    
+  
+
+
 ]
 ```
 
@@ -161,81 +163,112 @@ app.post('/login', express.json(), function(req, res) {
 ### (d)
 
 
+
 ### (e)
 Updated LoginTest code:
 ``` loginTest.js
+const rp = require('request-promise-native');
+let cookiejar = rp.jar();
+
+let getActivities = {
+    url: 'http://127.0.0.11:1711/activities',
+    method: 'GET', // What does this do?
+    resolveWithFullResponse: false,
+    jar:cookiejar
+};
+
+let postGoodEmailPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+    	email: "tirrivees1820@outlook.com",
+    	password: "49OqspUq"
+    },
+    jar: cookiejar
+};
+
+let postGoodEmailIncorrectPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+        email: "chihuahua1899@gmail.com",
+        password: "Ckp12311"
+    },
+    jar: cookiejar
+};
+
+let postBadEmailIncorrectPass = {
+    url: 'http://127.0.0.11:1711/login',
+    method: 'POST', // What does this do?
+    json: true,
+    body: {
+        email: "user@email.com",
+        password: "Ckp12311"
+    },
+    jar: cookiejar
+};
+let logoutCall = {
+    url: 'http://127.0.0.11:1711/logout',
+    method: 'GET', // What does this do?
+    resolveWithFullResponse: false,
+    jar: cookiejar
+};
+
+
 async function tests()
 {
     //Test 1 check 1)call activities 2) call post good login (correct email, password), 3) logout.........
     try {
         //...........call activities........
         console.log("Login Test 1: GoodLogin");
-        let res = await rp(getActivities);
+        let res1 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-
-    //Call to check good email and password
-    try {
-        //...........good login........
-        let res = await rp(postGoodEmailPass);
-        console.log("Good login test Results :",JSON.stringify(res));
+        //Call to check good email and password
+         //...........good login........
+        let res2 = await rp(postGoodEmailPass);
+        console.log("Good login test Results :",JSON.stringify(res2));
         console.log(`After Good Login ,Cookies: ${cookiejar.getCookieString(postGoodEmailPass.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-    //Logout call
-    try {
-        //...........log out........
-        let res = await rp(logoutCall);
+         //Logout call
+        let res3 = await rp(logoutCall);
         //console.log("Good login test Results :",JSON.stringify(res));
         console.log(`After Logout ,Cookies: ${cookiejar.getCookieString(logoutCall.url)}`);
     }
     catch (e) {
         console.log(e);
     }
+
     //Test 2 check 1)call activities 2) call post bad login (incorrect email, password)....
     try {
         //...........call activities........
         console.log("Login Test 2: Bad Email");
-        let res = await rp(getActivities);
+        let res4 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
+         //...........bad login with bad email........
+        let res5 = await rp(postBadEmailIncorrectPass);
     }
     catch (e) {
-        console.log(e);
+        console.log("Bad email login error :",e.message);
+        console.log(`After Login Test 2 ,Cookies: ${cookiejar.getCookieString(postBadEmailIncorrectPass.url)}`);
     }
-    //Call to check bad email and password
-    try {
-        //...........bad login with bad email........
-        let res = await rp(postBadEmailIncorrectPass);
-    }
-    catch (e) {
-       console.log("Bad email login error :",e.message);
-       console.log(`After Login Test 2 ,Cookies: ${cookiejar.getCookieString(postBadEmailIncorrectPass.url)}`);
-   }
-   
+    
      //Test 3 check 1) call post bad login (correct email, incorrectpassword)........
      //Call to check good email and incorrect password
      try {
         //...........call activities........
         console.log("Login Test 3: Bad Password");
-        let res = await rp(getActivities);
+        let res6 = await rp(getActivities);
         console.log(`Called Activities ,Cookies: ${cookiejar.getCookieString(getActivities.url)}`);
-    }
-    catch (e) {
-        console.log(e);
-    }
-     try {
-        let res = await rp(postGoodEmailIncorrectPass);
+        let res7 = await rp(postGoodEmailIncorrectPass);
     }
     catch (e) {
         console.log("Bad password login error :",e.message);
         console.log(`After Login Test 3 ,Cookies: ${cookiejar.getCookieString(postGoodEmailIncorrectPass.url)}`);
     }
 }
+
+tests();
 
 ```
 
@@ -244,6 +277,33 @@ async function tests()
 ## Question 4
 
 ### (a)
+``` clubServer.js
+// User this middleware to restrict paths only to admins
+const checkAdminMiddleware = function (req, res, next) {
+    if (req.session.user.role !== "admin") {
+        res.status(401).json({error: "Not permitted"});
+    } else {
+        next();
+    }
+};
+
+
+app.post('/activities',checkAdminMiddleware,express.json({ limit: "44b"}), function(req, res) {
+  if(Array.isArray(req.body)) {
+    req.body.map(x => activityJson.push(x));
+  } else {
+   activityJson.push(req.body);
+ }
+ console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
+ res.json(activityJson);
+
+});
+
+```
+
+### (b)
+//Updated addActivity.js file  
+
 ``` addActivityTest.js
 const rp = require('request-promise-native');
 const verbose = false;
@@ -379,10 +439,12 @@ rp(loginAsAdmin).then(res => {
 ``` clubServer.js
 app.get('/users',checkAdminMiddleware, function (req, res) {
     //res.send(`${JSON.stringify(activityJson)}`);
-    delete users.passHash;
-    res.json(users);
+    let allUsers = JSON.parse(JSON.stringify(users));
+    allUsers.map(user => {
+    delete user.passHash});
+    res.json(allUsers);
+    //res.json(users)
   });
-
 ```
 ### (b)
 ![ScreenShot](images/ScreenShot70.png)

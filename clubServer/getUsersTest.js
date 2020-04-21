@@ -24,8 +24,8 @@ let loginAsMember = {
     method: 'POST', // What does this do?
     json: true,
     body: {
-    	email: "chihuahua1899@gmail.com",
-    	password: "'E`Gj3iJ"
+    	email: "bibiri1807@yandex.com",
+    	password: "j4?5sshQ"
     },
     jar: cookiejar
 };
@@ -53,25 +53,25 @@ async function tests()
     }
     try {
 	 	console.log("Get Users Test 2: Member Login")
-        let res1 = await rp(loginAsMember);
+        let res4 = await rp(loginAsMember);
         console.log(`Member Login,Cookie: ${cookiejar.getCookieString(loginAsMember.url)}`);
-        let res2 = await rp(getNumberOfUsers);
-        console.log(`Number Of Users: ${res2.length}`);
+        let res5 = await rp(getNumberOfUsers);
+        console.log(`Number Of Users: ${res5.length}`);
         
     } catch (e) {
         console.log(`Error: ${e}\n`);
-        let res3 = await rp(logoutCall);
+        let res6 = await rp(logoutCall);
         console.log(`After logout,Cookie: ${cookiejar.getCookieString(logoutCall.url)}`);
     }
      try {
 	 	console.log("Get Users Test 3: Guest")
-        let res2 = await rp(getNumberOfUsers);
+        let res7 = await rp(getNumberOfUsers);
         
     } catch (e) {
         console.log(`Error: ${e}\n`);
         console.log(`Guest user ,Cookie: ${cookiejar.getCookieString(getNumberOfUsers.url)}`);
-        let res3 = await rp(logoutCall);
-        console.log(`After logout,Cookie: ${cookiejar.getCookieString(logoutCall.url)}`);
+        // let res8 = await rp(logoutCall);
+        // console.log(`After logout,Cookie: ${cookiejar.getCookieString(logoutCall.url)}`);
     }
 }
 tests();
