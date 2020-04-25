@@ -8,7 +8,7 @@ let getCall = {
 };
 
 let deleteCall = {
-    url: 'http://127.0.0.11:1711/activities/3',
+    url: 'http://127.0.0.11:1711/activities/CSQ6WGxWLn9vTugo',
     method: 'DELETE',
     json:true, // What does this do?
     resolveWithFullResponse: false,
