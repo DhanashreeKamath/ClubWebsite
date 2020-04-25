@@ -277,13 +277,54 @@ We will specifically need to change the locations where we fetch the activities,
 ### (c)
 ![ScreenShot](images/ScreenShot72.png)
 
-
 ## Question 4
 
 ### (a)
 
+Modified Login handling code to retrieve information from server:
+```Login.js
+loginParse() {
+    let that = this;
+    fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email.value,
+                        password: password.value
+                    })
+                }).then(function(response) {
+                    // console.log('Request status code: ', response.statusText, response.status, response.type);
+                    if (response.status == 200) {
+                        return response.json()
+                    }
+                }).then(function(data) {
+                    if (data) {
+                    that.roleChange(data.role, data);
+                }
+                });
+}
+
+render()
+{
+    return <div><main className ="box">
+        <header>
+            <h1 className="fh-custom-font">Login</h1>
+        </header>
+        <section id="loginForm">
+            <label htmlFor="email">Email: </label>
+            <input type="email" name="email" id="email" required placeholder="email" />
+            <label htmlFor="password">Password: </label>
+            <input type="password" id="password" placeholder="password"/>
+            <button type="button" id = "loginBtn" onClick={this.loginParse}>Login</button>
+```
+
+Screenshot of output after modification:
+![ScreenShot](images/ScreenShot73.png)
 
 ### (b)
+![ScreenShot](images/ScreenShot74.png)
 
 ## Question 5
 
@@ -291,5 +332,69 @@ We will specifically need to change the locations where we fetch the activities,
 
 ### (b)
 
+
+Updated member activities code:
+```MemberActivity.js
+import React from "react";
+import ReactDOM from "react-dom";
+import activityList from "../activities.json";
+import images from '../clubimages/*.jpg';
+
+
+class MemberActivity extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {activityList:null};
+  }
+
+  componentDidMount() {
+    let that = this;
+    fetch('/activities').then(function(response) {
+          if (response.status == 200) {
+            return response.json();
+        }
+        })
+        .then(function(data) {
+          if (data) {
+              that.state.activityList = data;
+      }
+        });
+  }
+
+  render(){
+    return <div><main className ="box">
+    <header>
+      <h1 className="fh-custom-font"> Union City Music Club</h1>
+      <h2> Our Activities</h2>
+    </header>
+    <table>
+    <thead> 
+    <tr> 
+    <td>Event </td>
+    <td> Dates </td>
+    </tr>
+    </thead>
+
+     <tbody>
+  {(activityList).map((activity) => {
+    return <tr key = {activity.name}>
+    <td>{activity.name}</td>
+    <td> {(activity.dates).join(", ")}</td>
+    </tr>
+  }
+
+  )}
+  </tbody>
+  </table>
+  </main>
+  <footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925;</footer></div>;
+}
+}
+export default MemberActivity;
+```
+
+Screenshot of Member activities page after fetch from server:
+![ScreenShot](images/ScreenShot75.png)
 
 

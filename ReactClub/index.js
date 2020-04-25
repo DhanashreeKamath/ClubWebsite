@@ -24,10 +24,10 @@ class App extends React.Component {
     let contents = null;
         switch (this.state.role) {
             case "member":
-                contents = <MemberApp roleChange={this.roleChange}/>;
+                contents = <MemberApp roleChange={this.roleChange} userInfo={this.state.userInfo}/>;
                 break;
             case "admin":
-                contents = <AdminApp  roleChange={this.roleChange}/>;
+                contents = <AdminApp  roleChange={this.roleChange} userInfo={this.state.userInfo}/>;
                 break;
             case "guest":
                 contents = <GuestApp  roleChange={this.roleChange}/>;
