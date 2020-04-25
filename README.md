@@ -97,24 +97,186 @@ db.insert(activities, function(err, newDocs) {
 
 ### (b)
 
+The following APIs were updated:
+
+* Activity Retrieval API:
+  * path: http://127.0.0.11:1711/activities
+  * method: GET
+* Activity Insertion API:
+  * path: http://127.0.0.11:1711/activities
+  * method: POST
+* Activity Deletion API:
+  * path: http://127.0.0.11:1711/activities/:i
+  * method: DELETE
+
+```clubServer.js
+app.get('/activities', function (req, res) {
+
+  db.find({}, function(err, docs) {
+    if (err) {
+      res.status(404).json({error: "Not found"});
+    } else {
+      console.log("We found " + docs.length + " documents");
+      console.log(docs);
+      res.json(docs);
+    }
+  });
+});
+
+app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
+//Insert activity
+  db.insert([req.body], function(err, newDocs) {
+    if(err) {
+      //console.log("Something went wrong when writing");
+      console.log(err);
+    } else {
+      //console.log("Added " + newDocs.length + " docs");
+      //find db
+      db.find({}, function(err, docs) {
+        if(err)
+        {
+           res.status(404).json({error: "Not found"});
+        }
+        else
+        {//Send response
+           res.json(docs)
+        }
+      });
+    }
+});
+});
+
+app.delete('/activities/:i', function(req, res) {
+
+ let id = req.params.i
+ console.log("Trying to delete activity "+ id)
+
+//This is to delete the activity
+ db.remove({_id:id}, {},
+    function (err, numRemoved) {
+        console.log("removed " + numRemoved);
+         db.find({}, function(err, docs) {
+        if(err)
+        {
+           res.status(404).json({error: "Not found"});
+        }
+        else
+        {//Send response
+           res.json(docs)
+        }
+      });
+});
+
+});
+```
+
+### (c)
+
+I tested the server by utilizing the tests that we had created previously "addActivityTest.js", "getActivityTest.js" and "delActivityTest.js". If it ran successfully then it means that the server is utilizing the database appropriately. Secondly to test the database is working between server restarts, I executed the following steps:
+* Setup Database
+* Started Server
+* Ran getActivityTest.js
+* Ran delActivityTest.js
+* Restarted the server
+* Ran getActivityTest.js
+The server returned all the values except the ones which were deleted.
+
+Test output of "addActivityTest.js", "getActivityTest.js" and "delActivityTest.js"
+![ScreenShot](images/ScreenShot71.png)
+
+Deleting Test code:
+```delActivityTest.js
+const rp = require('request-promise-native');
+
+let getCall = {
+    url: 'http://127.0.0.11:1711/activities',
+    method: 'GET',
+    json:true, // What does this do?
+    resolveWithFullResponse: false
+};
+
+let deleteCall = {
+    url: 'http://127.0.0.11:1711/activities/GYx3MYQbHrhjl2hr',
+    method: 'DELETE',
+    json:true, // What does this do?
+    resolveWithFullResponse: false,
+    //json:true
+    
+};
+let badDeleteCall = {
+    url: 'http://127.0.0.11:1711/activities/ohYVJxoRYa1TF4Wk',
+    method: 'DELETE',
+    json:true, // What does this do?
+    resolveWithFullResponse: false,
+    //json:true
+};
+
+let anotherDeleteCall = {
+    url: 'http://127.0.0.11:1711/activities/0',
+    method: 'DELETE',
+    json:true, // What does this do?
+    resolveWithFullResponse: false
+};
+
+rp(getCall).then(res => {
+  console.log("Initial Get of activities");
+  //let parsedJsonactivity = JSON.parse(res);
+  console.log("Currently "+res.length+" activities");
+  return rp(deleteCall);
+}).then(res => {
+console.log("After first Good activity deletetion");
+//let parsedJsonactivity = JSON.parse(res);
+console.log("Currently "+res.length+" activities");
+ return rp(badDeleteCall)
+}).catch(function(err){
+  console.log("After first bad activity Delete");
+  console.log("Error occurred:"+err);
+  return rp(anotherDeleteCall)
+}).then(res =>{
+  console.log("After Another Good activity Delete")
+  //let parsedJsonactivity = JSON.parse(res);
+  console.log("Currently "+res.length+" activities");
+})
+```
 
 
 
 ## Question 3
 
-### (a)   
+### (a) 
+We can utilize Cross origin resource sharing to get the required information from the server. We will need to make the required API calls using static domain names and port numbers in the javascript source code. This will make sure that the call reaches the correct destination.
+We will specifically need to change the locations where we fetch the activities, login, logout calls to utilize the specific domain and port information.  
 
 
 ### (b)
 
+1. The proxy should be located with the React Client code.
+
+2. We are going to forward the following paths:
+  * /login
+  * /logout
+  * /activities
+  * /activities/:i
+  * /users
+
+3. The server is going to run on the ip address "127.0.0.11" and port "1711".
+
+4. the devproxy is going to run on ip address "127.0.0.1" and port "1234".
+
+5. We will point the browser to the URL "http://localhost:1234/"
+
+6. We will need 2 terminal windows. 1 window for the development/proxy with Nodejs and another window for the application server.
+
+7. We will require the following npm modules:
+  * http-proxy-middleware
+  * parcel-bundler
+  * express
+
+8. We can test if the proxy is forwarding the requests if we get the correct output from the database and we do not encounter any 404 status code errors. 
 
 ### (c)
+![ScreenShot](images/ScreenShot72.png)
 
-### (d)
-
-
-
-### (e)
 
 ## Question 4
 

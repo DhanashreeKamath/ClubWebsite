@@ -42,8 +42,6 @@ app.get('/activities', function (req, res) {
       res.json(docs);
     }
   });
-
-
 });
 
 
@@ -96,17 +94,14 @@ app.delete('/activities/:i', function(req, res) {
 //This is to delete the activity
  db.remove({_id:id}, {},
     function (err, numRemoved) {
+      if (err) {
+        res.status(404).json({error: "Not Found"});
+      } else {
         console.log("removed " + numRemoved);
-         db.find({}, function(err, docs) {
-        if(err)
-        {
-           res.status(404).json({error: "Not found"});
-        }
-        else
-        {//Send response
+        db.find({}, function(err, docs) {
            res.json(docs)
-        }
       });
+    }
 });
 
 });
