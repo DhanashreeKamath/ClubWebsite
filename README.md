@@ -73,6 +73,11 @@ failure code: 400 (BAD REQUEST)
 role: only admin can delete the users
 
 ### (e)
+path : http://127.0.0.11:1711/users/:user-id/reset_password
+method: 
+sucess code: 200(OK)
+failure code: 400 (BAD REQUEST)
+role: only admin can delete the users
 
 ## Question 2 
 
