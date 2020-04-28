@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import activityList from "../activities.json";
+//import activityList from "../activities.json";
 import images from '../clubimages/*.jpg';
-
 
 class MemberActivity extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {activityList:null};
+		this.state = {activityList:[]};
 	}
 
 	componentDidMount() {
@@ -20,10 +19,11 @@ class MemberActivity extends React.Component {
         })
         .then(function(data) {
         	if (data) {
-            	that.state.activityList = data;
+            	that.setState({activityList:data});
 			}
         });
 	}
+
 
 	render(){
     return <div><main className ="box">
@@ -40,10 +40,12 @@ class MemberActivity extends React.Component {
 		</thead>
 
      <tbody>
-	{(activityList).map((activity) => {
+     {console.log(this.state.activityList)}
+	{(this.state.activityList).map((activity) => {
+		console.log(activity);
 		return <tr key = {activity.name}>
 		<td>{activity.name}</td>
-		<td> {(activity.dates).join(", ")}</td>
+		<td> {activity.dates}</td>
 		</tr>
 	}
 

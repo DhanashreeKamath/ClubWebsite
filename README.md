@@ -34,24 +34,7 @@ failure code: 413
 role: only admin can get the number of users
 
 ### (b)
-Deleting activity permission should only be given to admin. This resrtiction was not implemneted before.
-Adding checkAdmin middilewear
-``` clubServer.js
-app.delete('/activities/:i',checkAdminMiddleware, function(req, res) {
-
- let id = req.params.i
- console.log("Trying to delete activity "+ id)
- if (id <0 ||id >= activityJson.length) {
-   console.log("Bad activity deletion index: "+ id)
-   //res.status(400).send(errorResponse2);
-   next();
- } else {
-  activityJson.splice(id, 1)
-  res.json(activityJson)
-}
-
-});
-```
+Yes, it is like REST.
 ### (c)
 path : http://127.0.0.11:1711/activities/:activity-id
 method: POST
@@ -192,6 +175,7 @@ Test output of "addActivityTest.js", "getActivityTest.js" and "delActivityTest.j
 Deleting Test code:
 ```delActivityTest.js
 const rp = require('request-promise-native');
+let deleteId = [];
 
 let getCall = {
     url: 'http://127.0.0.11:1711/activities',
@@ -200,8 +184,12 @@ let getCall = {
     resolveWithFullResponse: false
 };
 
+rp(getCall).then(res => {
+    res.map(b => deleteId.push(b._id));
+    console.log(deleteId)
+}).then(res=> {
 let deleteCall = {
-    url: 'http://127.0.0.11:1711/activities/GYx3MYQbHrhjl2hr',
+    url: 'http://127.0.0.11:1711/activities/'+deleteId[0],
     method: 'DELETE',
     json:true, // What does this do?
     resolveWithFullResponse: false,
@@ -209,7 +197,7 @@ let deleteCall = {
     
 };
 let badDeleteCall = {
-    url: 'http://127.0.0.11:1711/activities/ohYVJxoRYa1TF4Wk',
+    url: 'http://127.0.0.11:1711/activities/'+deleteId[1],
     method: 'DELETE',
     json:true, // What does this do?
     resolveWithFullResponse: false,
@@ -227,6 +215,7 @@ rp(getCall).then(res => {
   console.log("Initial Get of activities");
   //let parsedJsonactivity = JSON.parse(res);
   console.log("Currently "+res.length+" activities");
+    //console.log(deleteCall.url)
   return rp(deleteCall);
 }).then(res => {
 console.log("After first Good activity deletetion");
@@ -242,10 +231,8 @@ console.log("Currently "+res.length+" activities");
   //let parsedJsonactivity = JSON.parse(res);
   console.log("Currently "+res.length+" activities");
 })
+})
 ```
-
-
-
 ## Question 3
 
 ### (a) 
@@ -323,6 +310,11 @@ render()
             <label htmlFor="password">Password: </label>
             <input type="password" id="password" placeholder="password"/>
             <button type="button" id = "loginBtn" onClick={this.loginParse}>Login</button>
+        </section>
+    </main>
+    <footer>&#127926;&copy; Copyright Union City Music Club 2019 &#127925; </footer>
+    </div>;
+}
 ```
 
 Screenshot of output after modification:
@@ -342,15 +334,14 @@ Updated member activities code:
 ```MemberActivity.js
 import React from "react";
 import ReactDOM from "react-dom";
-import activityList from "../activities.json";
+//import activityList from "../activities.json";
 import images from '../clubimages/*.jpg';
-
 
 class MemberActivity extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {activityList:null};
+    this.state = {activityList:[]};
   }
 
   componentDidMount() {
@@ -362,10 +353,11 @@ class MemberActivity extends React.Component {
         })
         .then(function(data) {
           if (data) {
-              that.state.activityList = data;
+              that.setState({activityList:data});
       }
         });
   }
+
 
   render(){
     return <div><main className ="box">
@@ -382,10 +374,12 @@ class MemberActivity extends React.Component {
     </thead>
 
      <tbody>
-  {(activityList).map((activity) => {
+     {console.log(this.state.activityList)}
+  {(this.state.activityList).map((activity) => {
+    console.log(activity);
     return <tr key = {activity.name}>
     <td>{activity.name}</td>
-    <td> {(activity.dates).join(", ")}</td>
+    <td> {activity.dates}</td>
     </tr>
   }
 
