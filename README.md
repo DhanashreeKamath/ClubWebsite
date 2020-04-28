@@ -7,60 +7,60 @@
 ### (a)
 1.
 path : http://127.0.0.11:1711/activities  
-method: GET 
+method: GET  
 sucess code: by default 200 (OK)  
-failure code: 404 (not found) 
-role: guest, member, admin 
+failure code: 404 (not found)  
+role: guest, member, admin  
 
 2.
-path : http://127.0.0.11:1711/activities 
-method: POST 
-sucess code: by default 200 (OK) 
-failure code: 413(Request entity too large) 
-role: Only admin can add the activities 
+path : http://127.0.0.11:1711/activities  
+method: POST  
+sucess code: by default 200 (OK)  
+failure code: 413(Request entity too large)  
+role: Only admin can add the activities  
 
 3.
-path :http://127.0.0.11:1711/activities/:id 
-method: DELETE 
-sucess code: 200(OK) 
-failure code: 400 (BAD request response) 
-role:Only admin can delete the activities 
+path :http://127.0.0.11:1711/activities/:id  
+method: DELETE  
+sucess code: 200(OK)  
+failure code: 400 (BAD request response)  
+role:Only admin can delete the activities  
 
 4.
-path : http://127.0.0.11:1711/users 
-method: GET 
-sucess code: 200(OK) 
-failure code: 400(bad request)
-role: only admin can get the number of users 
+path : http://127.0.0.11:1711/users  
+method: GET  
+sucess code: 200(OK)  
+failure code: 400(bad request)  
+role: only admin can get the number of users  
 
 ### (b)
 Yes, All intefaces that I have implemented is REST like.
 ### (c)
-path : http://127.0.0.11:1711/activities/:activity-id
-method: POST
-sucess code: 200(OK)
-failure code: 400 (BAD REQUEST)
-role: only admin can update the activity
+path : http://127.0.0.11:1711/activities/:activity-id  
+method: POST  
+sucess code: 200(OK)  
+failure code: 400 (BAD REQUEST)  
+role: only admin can update the activity  
 
 ### (d)
-path : http://127.0.0.11:1711/users
-method: POST
-sucess code: 200(OK)
-failure code: 400 (BAD REQUEST)
-role: only admin can add the users
+path : http://127.0.0.11:1711/users  
+method: POST  
+sucess code: 200(OK)  
+failure code: 400 (BAD REQUEST)  
+role: only admin can add the users  
 
-path : http://127.0.0.11:1711/users/:user-id
-method: DELETE
-sucess code: 200(OK)
-failure code: 400 (BAD REQUEST)
-role: only admin can delete the users
+path : http://127.0.0.11:1711/users/:user-id  
+method: DELETE  
+sucess code: 200(OK)  
+failure code: 400 (BAD REQUEST)  
+role: only admin can delete the users  
 
 ### (e)
-path : http://127.0.0.11:1711/users/:user-id/reset_password
-method: POST
-sucess code: 200(OK)
-failure code: 400 (BAD REQUEST)
-role: only admin can delete the users
+path : http://127.0.0.11:1711/users/:user-id/reset_password  
+method: POST  
+sucess code: 200(OK)  
+failure code: 400 (BAD REQUEST)  
+role: only admin can delete the users  
 
 ## Question 2 
 
