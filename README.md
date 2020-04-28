@@ -6,35 +6,35 @@
 ## Question 1
 ### (a)
 1.
-path : http://127.0.0.11:1711/activities
-method: GET
-sucess code: by default 200 (OK)
-failure code: 404 (not found)
-role: guest, member, admin
+path : http://127.0.0.11:1711/activities  
+method: GET 
+sucess code: by default 200 (OK)  
+failure code: 404 (not found) 
+role: guest, member, admin 
 
 2.
-path : http://127.0.0.11:1711/activities
-method: POST
-sucess code: by default 200 (OK)
-failure code: 413(Request entity too large)
-role: Only admin can add the activities
+path : http://127.0.0.11:1711/activities 
+method: POST 
+sucess code: by default 200 (OK) 
+failure code: 413(Request entity too large) 
+role: Only admin can add the activities 
 
 3.
-path :http://127.0.0.11:1711/activities/:id
-method: DELETE
-sucess code: 200(OK)
-failure code: 400 (BAD request response)
-role:Only admin can delete the activities
+path :http://127.0.0.11:1711/activities/:id 
+method: DELETE 
+sucess code: 200(OK) 
+failure code: 400 (BAD request response) 
+role:Only admin can delete the activities 
 
 4.
-path : http://127.0.0.11:1711/users
-method: GET
-sucess code: 200(OK)
-failure code: 413
-role: only admin can get the number of users
+path : http://127.0.0.11:1711/users 
+method: GET 
+sucess code: 200(OK) 
+failure code: 400(bad request)
+role: only admin can get the number of users 
 
 ### (b)
-Yes, it is like REST.
+Yes, All intefaces that I have implemented is REST like.
 ### (c)
 path : http://127.0.0.11:1711/activities/:activity-id
 method: POST
@@ -57,7 +57,7 @@ role: only admin can delete the users
 
 ### (e)
 path : http://127.0.0.11:1711/users/:user-id/reset_password
-method: 
+method: POST
 sucess code: 200(OK)
 failure code: 400 (BAD REQUEST)
 role: only admin can delete the users
@@ -66,21 +66,19 @@ role: only admin can delete the users
 
 ### (a)
 ```activityDB.js
-const DataStore = require('nedb');
+const DataStore = require('nedb-promises');
 const db = new DataStore({filename: __dirname + '/activityDB', autoload: true});
 
 const activities = require('./activities.json');
-// We let NeDB create _id property for us.
 
-db.insert(activities, function(err, newDocs) {
-    if(err) {
-        console.log("Something went wrong when writing");
-        console.log(err);
-    } else {
-      console.log(newDocs);
-        console.log("Added " + newDocs.length + " activities");
-    }
-});
+
+db.insert(activities).then(newDocs => {
+  // console.log(newDocs)
+  console.log("Added " + newDocs.length + " activities");
+})
+.catch(function (err){
+    console.log(` Some type of err : ${err}`);
+})
 ```
 
 ### (b)
@@ -97,64 +95,52 @@ The following APIs were updated:
   * path: http://127.0.0.11:1711/activities/:i
   * method: DELETE
 
+
 ```clubServer.js
 app.get('/activities', function (req, res) {
-
-  db.find({}, function(err, docs) {
-    if (err) {
-      res.status(404).json({error: "Not found"});
-    } else {
+  db.find({}).then(function(docs) {
       console.log("We found " + docs.length + " documents");
       console.log(docs);
       res.json(docs);
-    }
-  });
+    }).catch(function(err){
+      res.status(404).json({error: "Not found"});
+    })
 });
 
 app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
 //Insert activity
-  db.insert([req.body], function(err, newDocs) {
-    if(err) {
-      //console.log("Something went wrong when writing");
-      console.log(err);
-    } else {
-      //console.log("Added " + newDocs.length + " docs");
-      //find db
-      db.find({}, function(err, docs) {
-        if(err)
-        {
-           res.status(404).json({error: "Not found"});
-        }
-        else
-        {//Send response
-           res.json(docs)
-        }
-      });
-    }
+db.insert([req.body]).then(newDocs => {
+  console.log("Added " + newDocs.length + " activities");
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })
+
+  db.find({}).then(function (activities) {
+    res.json(activities);
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })  
 });
-});
+
 
 app.delete('/activities/:i', function(req, res) {
-
- let id = req.params.i
- console.log("Trying to delete activity "+ id)
-
-//This is to delete the activity
- db.remove({_id:id}, {},
-    function (err, numRemoved) {
-        console.log("removed " + numRemoved);
-         db.find({}, function(err, docs) {
-        if(err)
-        {
-           res.status(404).json({error: "Not found"});
-        }
-        else
-        {//Send response
-           res.json(docs)
-        }
-      });
-});
-
+  let id=req.params.i;
+  console.log(`Trying to delete activity : ${id}`);
+  db.remove({_id:id}).then(numRemoved=> { 
+    console.log("removed " + numRemoved); 
+  })
+  .catch(function (err){
+    res.status(404).send({error:true,message:" Not Found"});
+    console.log(` Some type of err : ${err}`);
+  })
+  db.find({}).then(function (activities) {
+    res.json(activities);
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })  
 });
 ```
 

@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 let activityJson = require('./activities.json');
 
-const DataStore = require('nedb');
+const DataStore = require('nedb-promises');
 const db = new DataStore({filename: __dirname + '/activityDB', autoload: true});
 
 let errorResponse = {"error": true, "message":"bad activity"}
@@ -33,15 +33,22 @@ app.use(setUpSessionMiddleware);
 
 app.get('/activities', function (req, res) {
 
-  db.find({}, function(err, docs) {
-    if (err) {
-      res.status(404).json({error: "Not found"});
-    } else {
+  // db.find({}, function(err, docs) {
+  //   if (err) {
+  //     res.status(404).json({error: "Not found"});
+  //   } else {
+  //     console.log("We found " + docs.length + " documents");
+  //     console.log(docs);
+  //     res.json(docs);
+  //   }
+  // });
+  db.find({}).then(function(docs) {
       console.log("We found " + docs.length + " documents");
       console.log(docs);
       res.json(docs);
-    }
-  });
+    }).catch(function(err){
+      res.status(404).json({error: "Not found"});
+    })
 });
 
 
@@ -57,25 +64,40 @@ const checkAdminMiddleware = function (req, res, next) {
 
 app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
 //Insert activity
-  db.insert([req.body], function(err, newDocs) {
-    if(err) {
-      //console.log("Something went wrong when writing");
-      console.log(err);
-    } else {
-      //console.log("Added " + newDocs.length + " docs");
-      //find db
-      db.find({}, function(err, docs) {
-        if(err)
-        {
-           res.status(404).json({error: "Not found"});
-        }
-        else
-        {//Send response
-           res.json(docs)
-        }
-      });
-    }
-});
+//   db.insert([req.body], function(err, newDocs) {
+//     if(err) {
+//       //console.log("Something went wrong when writing");
+//       console.log(err);
+//     } else {
+//       //console.log("Added " + newDocs.length + " docs");
+//       //find db
+//       db.find({}, function(err, docs) {
+//         if(err)
+//         {
+//            res.status(404).json({error: "Not found"});
+//         }
+//         else
+//         {//Send response
+//            res.json(docs)
+//         }
+//       });
+//     }
+// });
+db.insert([req.body]).then(newDocs => {
+  console.log("Added " + newDocs.length + " activities");
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })
+
+  db.find({}).then(function (activities) {
+    res.json(activities);
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })  
+     
+//});
 });
 
 app.get('/users',checkAdminMiddleware, function (req, res) {
@@ -84,26 +106,42 @@ app.get('/users',checkAdminMiddleware, function (req, res) {
     delete user.passHash});
   res.json(allUsers);
     //res.json(users)
+  
   });
 
 app.delete('/activities/:i', function(req, res) {
 
- let id = req.params.i
- console.log("Trying to delete activity "+ id)
+ //let id = req.params.i
+ //console.log("Trying to delete activity "+ id)
 
-//This is to delete the activity
- db.remove({_id:id}, {},
-    function (err, numRemoved) {
-      if (err) {
-        res.status(404).json({error: "Not Found"});
-      } else {
-        console.log("removed " + numRemoved);
-        db.find({}, function(err, docs) {
-           res.json(docs)
-      });
-    }
-});
+// //This is to delete the activity
+//  db.remove({_id:id}, {},
+//     function (err, numRemoved) {
+//       if (err) {
+//         res.status(404).json({error: "Not Found"});
+//       } else {
+//         console.log("removed " + numRemoved);
+//         db.find({}, function(err, docs) {
+//            res.json(docs)
+//       });
+//     }
+// });
 
+let id=req.params.i;
+  console.log(`Trying to delete activity : ${id}`);
+  db.remove({_id:id}).then(numRemoved=> { 
+    console.log("removed " + numRemoved); 
+  })
+  .catch(function (err){
+    res.status(404).send({error:true,message:" Not Found"});
+    console.log(` Some type of err : ${err}`);
+  })
+  db.find({}).then(function (activities) {
+    res.json(activities);
+  })
+  .catch(function (err) {
+    console.log(` Some type of err : ${err}`);
+  })  
 });
 
 app.post('/login', express.json(), function(req, res) {
@@ -163,7 +201,6 @@ app.use(function deleteErrorHandling(err, req, res, next) {
   } else {
     next(err)
   }
-
 })
 
 app.use(function activityErrors(err, req, res, next) {
