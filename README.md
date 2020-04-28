@@ -150,9 +150,11 @@ I tested the server by utilizing the tests that we had created previously "addAc
 * Setup Database
 * Started Server
 * Ran getActivityTest.js
+* Ran addActivityTest.js
 * Ran delActivityTest.js
 * Restarted the server
 * Ran getActivityTest.js
+
 The server returned all the values except the ones which were deleted.
 
 Test output of "addActivityTest.js", "getActivityTest.js" and "delActivityTest.js"
@@ -243,7 +245,7 @@ We will specifically need to change the locations where we fetch the activities,
 
 5. We will point the browser to the URL "http://localhost:1234/"
 
-6. We will need 2 terminal windows. 1 window for the development/proxy with Nodejs and another window for the application server.
+6. We will need 2 terminal windows. 1 window for the development/proxy with Nodejs and another window for the application server(clubServer.js).
 
 7. We will require the following npm modules:
   * http-proxy-middleware
