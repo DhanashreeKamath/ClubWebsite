@@ -129,7 +129,7 @@ To sign up
 }
 ```
 ### (b)
-one of valid json test
+one of valid JSON data test
 ```GoodMemberTest1.json
 [
   {
@@ -143,19 +143,147 @@ one of valid json test
   }
 ]
 ```
+one of the invalid JSON data test 
+```BadMemberTest1.json
+[
+    {
+    "firstName":"Shaan",
+    "lastName":"Jane",
+    "email":"janegmail.com",
+    "password":"678ADF",
+    "chooseActivity":"Instrument Class",
+    "chooseALevel":1,
+    "questionsAndComments":"hello have some question"
+    }
 
-### (c)
-
-
-### (c)
+]
+```
+Screen shot of checking valid and invalid data json using AJV
+![ScreenShot](images/ScreenShot80.png)
 
 ## Question 4
 
 ### (a)
-
-
+```clubServer.js
+app.post('/applicants', express.json(), function(req, res) {
+  // console.log(req.body);
+  let data = req.body;
+  const ajv = new Ajv();
+  var valid = ajv.validate(schema, data);
+  console.log(valid);
+  if (!valid) 
+    res.status(400).json({"error": true, "message":"Invalid Json Data"});
+ else
+   res.json({"message":"Application Received"});
+});
+```
 ### (b)
-![ScreenShot](images/ScreenShot74.png)
+```applicantTest.js
+const rp = require('request-promise-native');
+
+let goodApplicant1 = {
+    url: 'http://127.0.0.11:1711/applicants',
+    method: 'POST', // What does this do?
+    resolveWithFullResponse: false,
+    json:true,
+    body: [
+          {
+            "firstName":"Aksh",
+            "lastName":"Rai",
+            "email":"rai@gmail.com",
+            "password":"1234Aza12",
+            "chooseActivity":"OnlineClass",
+            "chooseALevel":2,
+            "questionsAndComments":"hello have some question"
+          }
+        ]
+};
+let goodApplicant2 = {
+    url: 'http://127.0.0.11:1711/applicants',
+    method: 'POST', // What does this do?
+    resolveWithFullResponse: false,
+    json:true,
+    body: [
+        {
+        "firstName":"Shaan",
+        "lastName":"Jane",
+        "email":"jane@gmail.com",
+        "password":"678ADF",
+        "chooseActivity":"Instrument Class",
+        "chooseALevel":1,
+        "questionsAndComments":"hello have some question"
+        }
+
+    ]
+
+};
+let badApplicant1 = {
+    url: 'http://127.0.0.11:1711/applicants',
+    method: 'POST', // What does this do?
+    resolveWithFullResponse: false,
+    json:true,
+    body: [
+        {
+        "firstName":"Shaan",
+        "lastName":"Jane",
+        "email":"janegmail.com",
+        "password":"678ADF",
+        "chooseActivity":"Instrument Class",
+        "chooseALevel":1,
+        "questionsAndComments":"hello have some question"
+        }
+
+     ]
+
+};
+let badApplicant2 = {
+    url: 'http://127.0.0.11:1711/applicants',
+    method: 'POST', // What does this do?
+    resolveWithFullResponse: false,
+    json:true,
+    body: [
+        {
+        "firstName":"Shaan",
+        "lastName":"Jane",
+        "email":"jane@gmail.com",
+        "password":"678ADF",
+        "chooseActivity":"Instrument Class",
+        "chooseALevel":1.5,
+        "questionsAndComments":"hello have some question"
+    }
+   ]
+
+};
+
+async function tests()
+{
+    //Test 1 check 1)call activities 2) call post good login (correct email, password), 3) logout.........
+    try {
+         console.log("Applicant test1: Good #1");
+         let res1 = await rp(goodApplicant1);
+         console.log("Application Result:",res1);
+         console.log("Applicant test2: Good #2");
+         let res2 = await rp(goodApplicant2);
+         console.log("Application Result:",res2);
+         console.log("Applicant test1: Bad #1");
+         let res3 = await rp(badApplicant1);
+         
+     }
+      catch (e) {
+        console.log("Application Result :",e.message);
+    }
+    try {
+        console.log("Applicant test1: Bad #2");
+        let res4 = await rp(badApplicant2);
+    }
+    catch (e) {
+         console.log("Application Result :",e.message);
+    }
+}
+tests();
+```
+Applicant data testing 
+![ScreenShot](images/ScreenShot81.png)
 
 ## Question 5
 

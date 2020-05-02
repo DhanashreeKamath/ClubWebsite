@@ -3,6 +3,8 @@ const app = express();
 const users = require('./clubUsersHash.json');
 var session = require('express-session')
 const bcrypt = require('bcryptjs');
+var Ajv = require('ajv');
+var schema = require('./memberSchema.json');
 
 let activityJson = require('./activities.json');
 
@@ -16,7 +18,7 @@ const cookieName = "hs4947Clubsid"; // Session ID cookie name, use this to delet
 app.use(session({
   secret: 'club website development',
   resave: false,
-    saveUninitialized: false,
+  saveUninitialized: false,
     name: cookieName // Sets the name of the cookie used by the session middleware
   }));
 // This initializes session state
@@ -53,7 +55,6 @@ const checkAdminMiddleware = function (req, res, next) {
 
 
 app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
-  console.log("Inside......psot");
   db.insert([req.body]).then(newDocs => {
     console.log("Added " + newDocs.length + " activities");
     return(db.find({}));
@@ -119,13 +120,13 @@ app.post('/login', express.json(), function(req, res) {
       req.session.user = newUserInfo;
       res.json(newUserInfo);
     });
-     }
-     else{
-       res.status(401).json ({error:true, message:"User/password error"});
-       return;
-     } 
+   }
+   else{
+     res.status(401).json ({error:true, message:"User/password error"});
+     return;
+   } 
 
-   });
+ });
 
 app.get('/logout', function (req, res) {
   let options = req.session.cookie;
@@ -137,6 +138,18 @@ app.get('/logout', function (req, res) {
         res.json({message: "Goodbye"});
       })
 });     
+
+app.post('/applicants', express.json(), function(req, res) {
+  let data = req.body;
+  const ajv = new Ajv();
+  var valid = ajv.validate(schema, data);
+  console.log(valid);
+  if (!valid) 
+    res.status(400).json({"error": true, "message":"Invalid Json Data"});
+ else
+   res.json({"message":"Application Received"});
+});
+
 
 app.use(function deleteErrorHandling(err, req, res, next) {
   if(req.route.methods.delete == true){
