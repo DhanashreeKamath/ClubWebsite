@@ -16,7 +16,7 @@ const cookieName = "hs4947Clubsid"; // Session ID cookie name, use this to delet
 app.use(session({
   secret: 'club website development',
   resave: false,
-  saveUninitialized: false,
+    saveUninitialized: false,
     name: cookieName // Sets the name of the cookie used by the session middleware
   }));
 // This initializes session state
@@ -31,26 +31,16 @@ const setUpSessionMiddleware = function (req, res, next) {
 
 app.use(setUpSessionMiddleware);
 
+//Get Activities
 app.get('/activities', function (req, res) {
-
-  // db.find({}, function(err, docs) {
-  //   if (err) {
-  //     res.status(404).json({error: "Not found"});
-  //   } else {
-  //     console.log("We found " + docs.length + " documents");
-  //     console.log(docs);
-  //     res.json(docs);
-  //   }
-  // });
   db.find({}).then(function(docs) {
-      console.log("We found " + docs.length + " documents");
-      console.log(docs);
-      res.json(docs);
-    }).catch(function(err){
-      res.status(404).json({error: "Not found"});
-    })
+    console.log("We found " + docs.length + " documents");
+    //console.log(docs);
+    res.json(docs);
+  }).catch(function(err){
+    res.status(404).json({error: "Not found"});
+  })
 });
-
 
 // User this middleware to restrict paths only to admins
 const checkAdminMiddleware = function (req, res, next) {
@@ -63,41 +53,15 @@ const checkAdminMiddleware = function (req, res, next) {
 
 
 app.post('/activities',checkAdminMiddleware,express.json(), function(req, res) {
-//Insert activity
-//   db.insert([req.body], function(err, newDocs) {
-//     if(err) {
-//       //console.log("Something went wrong when writing");
-//       console.log(err);
-//     } else {
-//       //console.log("Added " + newDocs.length + " docs");
-//       //find db
-//       db.find({}, function(err, docs) {
-//         if(err)
-//         {
-//            res.status(404).json({error: "Not found"});
-//         }
-//         else
-//         {//Send response
-//            res.json(docs)
-//         }
-//       });
-//     }
-// });
-db.insert([req.body]).then(newDocs => {
-  console.log("Added " + newDocs.length + " activities");
-  })
-  .catch(function (err) {
-    console.log(` Some type of err : ${err}`);
-  })
-
-  db.find({}).then(function (activities) {
+  console.log("Inside......psot");
+  db.insert([req.body]).then(newDocs => {
+    console.log("Added " + newDocs.length + " activities");
+    return(db.find({}));
+  }).then(function (activities){
     res.json(activities);
-  })
-  .catch(function (err) {
+  }).catch(function (err) {
     console.log(` Some type of err : ${err}`);
-  })  
-     
-//});
+  })
 });
 
 app.get('/users',checkAdminMiddleware, function (req, res) {
@@ -106,42 +70,24 @@ app.get('/users',checkAdminMiddleware, function (req, res) {
     delete user.passHash});
   res.json(allUsers);
     //res.json(users)
-  
+
   });
 
+//Delete call 
 app.delete('/activities/:i', function(req, res) {
 
- //let id = req.params.i
- //console.log("Trying to delete activity "+ id)
-
-// //This is to delete the activity
-//  db.remove({_id:id}, {},
-//     function (err, numRemoved) {
-//       if (err) {
-//         res.status(404).json({error: "Not Found"});
-//       } else {
-//         console.log("removed " + numRemoved);
-//         db.find({}, function(err, docs) {
-//            res.json(docs)
-//       });
-//     }
-// });
-
-let id=req.params.i;
+  let id=req.params.i;
   console.log(`Trying to delete activity : ${id}`);
   db.remove({_id:id}).then(numRemoved=> { 
     console.log("removed " + numRemoved); 
-  })
-  .catch(function (err){
+    return (db.find({}));
+  }).then(function (activities) {
+    res.json(activities);
+  }).catch(function (err){
     res.status(404).send({error:true,message:" Not Found"});
     console.log(` Some type of err : ${err}`);
   })
-  db.find({}).then(function (activities) {
-    res.json(activities);
-  })
-  .catch(function (err) {
-    console.log(` Some type of err : ${err}`);
-  })  
+
 });
 
 app.post('/login', express.json(), function(req, res) {
@@ -154,7 +100,7 @@ app.post('/login', express.json(), function(req, res) {
      return user.email === email;
    });
 
-    console.log(user)
+    //console.log(user)
     
     if(!user){
      res.status(401).json ({error:true, message:"User/password error"});
@@ -173,9 +119,6 @@ app.post('/login', express.json(), function(req, res) {
       req.session.user = newUserInfo;
       res.json(newUserInfo);
     });
-       // let newUserInfo = {"firstName":user.firstName,"lastName":user.lastName,"email":user.email,"role":user.role};
-       // console.log(`path /addThing received: ${JSON.stringify(req.body)}`);
-       // res.json(newUserInfo);
      }
      else{
        res.status(401).json ({error:true, message:"User/password error"});
@@ -206,7 +149,7 @@ app.use(function deleteErrorHandling(err, req, res, next) {
 app.use(function activityErrors(err, req, res, next) {
     // prepare and send error response here, i.e.,
     // set an error code and send JSON message
-    console.log(err)
+    //console.log(err)
     res.status(413).send(errorResponse)
     console.log(JSON.stringify(err))
     return

@@ -3,7 +3,6 @@ const db = new DataStore({filename: __dirname + '/activityDB', autoload: true});
 
 const activities = require('./activities.json');
 
-
 db.insert(activities).then(newDocs => {
 	// console.log(newDocs)
 	console.log("Added " + newDocs.length + " activities");

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "http://grotto-networking.com/schemas/MusicClubMembers",
+  "title": "List of Union city music club members",
+  "descriptions": "A schema for Club Members list. By Dhanashree",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "string",
+        "maxLength": 12
+      },
+      "lastName": {
+        "type": "string",
+        "maxLength": 12
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "minimum": 0
+      },
+      "password": {
+        "type": "string",
+        "pattern": "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$",
+        "minLength": 6,
+        "maxLength": 10
+      },
+      "chooseActivity": {
+        "type": "string"
+      },
+      "chooseALevel": {
+        "type": "number",
+        "multipleOf": 1.0
+      },
+      "questionsAndComments": {
+        "type": "string",
+        "maximum": 100
+      }
+    }
+  }
+}

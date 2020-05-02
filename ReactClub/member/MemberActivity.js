@@ -15,7 +15,7 @@ class MemberActivity extends React.Component {
 		fetch('/activities').then(function(response) {
         	if (response.status == 200) {
         		return response.json();
-        }
+         }
         })
         .then(function(data) {
         	if (data) {
@@ -23,7 +23,6 @@ class MemberActivity extends React.Component {
 			}
         });
 	}
-
 
 	render(){
     return <div><main className ="box">
@@ -45,7 +44,7 @@ class MemberActivity extends React.Component {
 		console.log(activity);
 		return <tr key = {activity.name}>
 		<td>{activity.name}</td>
-		<td> {activity.dates}</td>
+		<td> {(activity.dates).join(", ")}</td>
 		</tr>
 	}
 
