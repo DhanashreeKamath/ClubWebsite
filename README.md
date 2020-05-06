@@ -105,7 +105,7 @@ To sign up
       "email": {
         "type": "string",
         "format": "email",
-        "minimum": 0
+        "minLength":0
       },
       "password": {
         "type": "string",
@@ -114,18 +114,21 @@ To sign up
         "maxLength": 10
       },
       "chooseActivity": {
-        "type": "string"
+        "type": "string",
+        "enum": ["karokeNights","instrument","vocal","online"]
       },
       "chooseALevel": {
-        "type": "number",
-        "multipleOf": 1.0
+        "type": "string",
+        "enum": ["Beginner","Intermediate1","Intermediate2","Advanced"]
       },
       "questionsAndComments": {
         "type": "string",
         "maximum": 100
       }
-    }
-  },
+    },
+    "required": ["firstName", "lastName","email","password","chooseActivity","chooseALevel"],
+    "additionalProperties": false
+  }
 }
 ```
 ### (b)
@@ -137,22 +140,22 @@ one of valid JSON data test
     "lastName":"Rai",
     "email":"rai@gmail.com",
     "password":"1234Aza12",
-    "chooseActivity":"OnlineClass",
-    "chooseALevel":2,
+    "chooseActivity":"karokeNights",
+    "chooseALevel":"Beginner",
     "questionsAndComments":"hello have some question"
   }
 ]
 ```
-one of the invalid JSON data test 
+one of the invalid JSON data test (invalid password)
 ```BadMemberTest1.json
 [
-    {
+  {
     "firstName":"Shaan",
     "lastName":"Jane",
     "email":"janegmail.com",
     "password":"678ADF",
-    "chooseActivity":"Instrument Class",
-    "chooseALevel":1,
+    "chooseActivity":"instrument",
+    "chooseALevel":"Advanced",
     "questionsAndComments":"hello have some question"
     }
 
@@ -293,30 +296,34 @@ There is a limitation for maximum number of open connections for push notificati
 
 WebSockets are used to send data. It is vastly applied in technologies like real time polling application, chat applications, media player etc. Push notifications are used in case of sending news feeds, media players, etc.
 
-The difference in performance between WebSockets and Server-sent push notifications is negligible.
+The difference in performance between WebSockets(no performance guarentee) and Server-sent push notifications is negligible.
 
 
 ### (b)
 1. websocket protocol(WS) or secure websocket protocol runs top of TCP.  
 2. Message framing was added to the web scokets to provide two way communication as TCP is stream oriented, websockets understands messages not just bytes.  
 3. yes, websocket work with both binary and text based data.  
-4. Procedure for opening websocket starting from HTTP us called handshake.
+4. Procedure for opening websocket starting from HTTP is called as "handshake".
 
 ### (c)
-1. myWS = new WebSocket(url[, protocols]); Where url is the one to which WebSocket will respond. protocol will be either single or an  array of protocol strings.
+1. myWS = new WebSocket(url[, protocols]);  
+Where url is the one to which WebSocket will respond. 
+protocol will be either single or an  array of protocol strings. 
 2. There is no limit to the number of established websocket connections a client can have with the a single remote host.
-3. WebSocket.close() method closes the websocket connection ir connection attempt if any. Therefore client can check the connection is closeed or not using read- only property called WebSocket.readyState
-
-var readyState = aWebSocket.readyState; this will return 3 if the connection is closed or couldn't be reopened.  OR  
+3. WebSocket.close() method closes the websocket connection or connection attempt if any. Therefore client can check the connection is closed or not using read- only property called WebSocket.readyState.  
+For example :  
+var readyState = aWebSocket.readyState;  
+this will return 3 if the connection is closed or couldn't be reopened.  OR   
 We can check if(wsObj.readyState === webSocket.CLOSED){}
 
 ### (d)
 1. HTTP server is not same as the WebSocket server. WebSocket protocol and HTTP both enables two way communication. The difference between these two are WebSocket protocol is bidirectional therefore even server can send the message to client and vice versa. In HTTP protocol server cannot make an HTTP request to a client.It will only respond when client makes a request.  
 HTTP protocol is half duplex means both client and server can communicate with each other but not simultaneously. It is one direction at a time where as WebSocket protocol is full duplex both clinet and server can communicate with each other simultaneously.
 2. Express.js is an HTTP(S) server framework not a WebSocket Server.  
-3. WebSocket allows client to make unlimited number of connections to the target server and thus resources on the server can be exhausted because of DOS attack and also to prevent Cross Site WebSocket Hijacking. Therefore, it is good practice to only allow authenticated users to establish a successful websocket connection.
+3. WebSocket allows client to make unlimited number of connections to the target server and thus resources on the server can be exhausted because of DOS attack(unlimited unauthorized access) and also to prevent Cross Site WebSocket Hijacking. Therefore, it is good practice to only allow authenticated users to establish a successful websocket connection.
 
 ### (e)
+1. yes ????
 2.
 * Transfer of encrypted and unencrypted data separately
 * Use cases that which differ in terms of latency requirements. This can be in terms of streaming versus low latency use case

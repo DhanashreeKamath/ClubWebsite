@@ -18,7 +18,7 @@
       "email": {
         "type": "string",
         "format": "email",
-        "minimum": 0
+        "minLength":0
       },
       "password": {
         "type": "string",
@@ -27,16 +27,19 @@
         "maxLength": 10
       },
       "chooseActivity": {
-        "type": "string"
+        "type": "string",
+        "enum": ["karokeNights","instrument","vocal","online"]
       },
       "chooseALevel": {
-        "type": "number",
-        "multipleOf": 1.0
+        "type": "string",
+        "enum": ["Beginner","Intermediate1","Intermediate2","Advanced"]
       },
       "questionsAndComments": {
         "type": "string",
         "maximum": 100
       }
-    }
+    },
+    "required": ["firstName", "lastName","email","password","chooseActivity","chooseALevel"],
+    "additionalProperties": false
   }
 }

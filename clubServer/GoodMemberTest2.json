@@ -4,8 +4,8 @@
     "lastName":"Jane",
     "email":"jane@gmail.com",
     "password":"678ADF",
-    "chooseActivity":"Instrument Class",
-    "chooseALevel":1,
+    "chooseActivity":"instrument",
+    "chooseALevel":"Intermediate1",
     "questionsAndComments":"hello have some question"
     }
 

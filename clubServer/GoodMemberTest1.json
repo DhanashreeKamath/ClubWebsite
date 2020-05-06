@@ -4,8 +4,8 @@
     "lastName":"Rai",
     "email":"rai@gmail.com",
     "password":"1234Aza12",
-    "chooseActivity":"OnlineClass",
-    "chooseALevel":2,
+    "chooseActivity":"karokeNights",
+    "chooseALevel":"Beginner",
     "questionsAndComments":"hello have some question"
   }
 ]
