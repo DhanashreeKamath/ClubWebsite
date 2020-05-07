@@ -131,7 +131,7 @@ To sign up
   }
 }
 ```
-### (b)
+### (c)
 one of valid JSON data test
 ```GoodMemberTest1.json
 [
@@ -299,10 +299,10 @@ The performance for WebSocket is not guaranteed.
 
 
 ### (b)
-1. websocket protocol(WS) or secure websocket protocol runs top of TCP.  
+1. websocket protocol(WS) or secure websocket protocol runs on top of TCP.  
 2. Message framing was added to the web scokets to provide two way communication as TCP is stream oriented, websockets understands messages not just bytes.  
 3. yes, websocket work with both binary and text based data.  
-4. Procedure for opening websocket starting from HTTP is called as "handshake".
+4. yes,Procedure for opening websocket starting from HTTP is called as "handshake".
 
 ### (c)
 1. myWS = new WebSocket(url[, protocols]);  
@@ -325,10 +325,10 @@ HTTP protocol is half duplex means both client and server can communicate with e
 1. yes.
 2. These are the some of reason why server offer multiple different (named) WebSockets to clients
 * Transfer of encrypted and unencrypted data separately
-* Textual and binary data as 2 separate Websockets so that Websockets can take care of the deserialization
-* Server supports multiple different websocket sub-protocols, and the page requires access to more than one. The reason we require more than one websocket is because it is limited to a single sub-protocol
-* To keep track of clients and also for authentication purpose so that no two clients can interrupt each other.
-The same web server and port may have multiple different websocket services. The client can choose per connection depending on the URI path, scheme or sub-protocol.
+* Textual and binary data as 2 separate Websockets so that Websockets can take care of the deserialization.  
+* To keep track of clients and also for authentication purpose so that no two clients can interrupt each other.  
+* Server supports multiple different websocket sub-protocols, and the page requires access to more than one. The reason we require more than one websocket is because it is limited to a single sub-protocol.  
+The same web server and port may have multiple different websocket services. The client can choose per connection depending on the URI path, scheme or sub-protocol.  
 * Use cases that which differ in terms of latency requirements. This can be in terms of streaming versus low latency use case
 3. Server will have to keep track of client's socket to avoid repeated handshakes with already confirmed clients. If we don't track then the same client IP adress may try to connect multiple times but the server can deny the attempt inorder to save itself from Denial-of-Service attacks.
 For example, we can keep table of username or ID numbers along with the corresponding websocket and other data we need to associate with the connection.
