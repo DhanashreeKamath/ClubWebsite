@@ -295,8 +295,7 @@ The major difference between WebSockets and Server-sent push notification is Web
 There is a limitation for maximum number of open connections for push notification, as the limit per browser is six where as WebSocket can handle upto 1024 connections per browser. WebSockets can transmit both binary data and UTF- 8. Push notification are limited to UTF-8.
 
 WebSockets are used to send data. It is vastly applied in technologies like real time polling application, chat applications, media player etc. Push notifications are used in case of sending news feeds, media players, etc.
-
-The difference in performance between WebSockets(no performance guarentee) and Server-sent push notifications is negligible.
+The performance for WebSocket is not guaranteed.
 
 
 ### (b)
@@ -320,16 +319,17 @@ We can check if(wsObj.readyState === webSocket.CLOSED){}
 1. HTTP server is not same as the WebSocket server. WebSocket protocol and HTTP both enables two way communication. The difference between these two are WebSocket protocol is bidirectional therefore even server can send the message to client and vice versa. In HTTP protocol server cannot make an HTTP request to a client.It will only respond when client makes a request.  
 HTTP protocol is half duplex means both client and server can communicate with each other but not simultaneously. It is one direction at a time where as WebSocket protocol is full duplex both clinet and server can communicate with each other simultaneously.
 2. Express.js is an HTTP(S) server framework not a WebSocket Server.  
-3. WebSocket allows client to make unlimited number of connections to the target server and thus resources on the server can be exhausted because of DOS attack(unlimited unauthorized access) and also to prevent Cross Site WebSocket Hijacking. Therefore, it is good practice to only allow authenticated users to establish a successful websocket connection.
+3. WebSocket allows client to make unlimited number of connections to the target server and thus resources on the server can be exhausted because of DOS attack(unlimited unauthorized access so the authorized users may not be able to access the connection) and also to prevent Cross Site WebSocket Hijacking. Therefore, it is good practice to only allow authenticated users to establish a successful websocket connection.
 
 ### (e)
-1. yes ????
-2.
+1. yes.
+2. These are the some of reason why server offer multiple different (named) WebSockets to clients
 * Transfer of encrypted and unencrypted data separately
-* Use cases that which differ in terms of latency requirements. This can be in terms of streaming versus low latency use case
 * Textual and binary data as 2 separate Websockets so that Websockets can take care of the deserialization
 * Server supports multiple different websocket sub-protocols, and the page requires access to more than one. The reason we require more than one websocket is because it is limited to a single sub-protocol
+* To keep track of clients and also for authentication purpose so that no two clients can interrupt each other.
 The same web server and port may have multiple different websocket services. The client can choose per connection depending on the URI path, scheme or sub-protocol.
+* Use cases that which differ in terms of latency requirements. This can be in terms of streaming versus low latency use case
 3. Server will have to keep track of client's socket to avoid repeated handshakes with already confirmed clients. If we don't track then the same client IP adress may try to connect multiple times but the server can deny the attempt inorder to save itself from Denial-of-Service attacks.
 For example, we can keep table of username or ID numbers along with the corresponding websocket and other data we need to associate with the connection.
 
