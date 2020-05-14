@@ -1,0 +1,6 @@
+[
+    {"language": "Python", "rating": 9,
+     "comments": "Sounds scary but its not."},
+    {"language": "C++", "rating": 6,
+    "comments": "Too hard to get right. Cross platform is a pain."}
+]
