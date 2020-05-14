@@ -43,5 +43,5 @@ app.post('/languages', express.json(),function (req, res) {
 host = '127.0.0.1';
 port = '4051';
 app.listen(port, host, function () {
-	console.log(`Example app listening on IPv4: ${host}:${port}`);
+	console.log(`App listening on IPv4: ${host}:${port}`);
 });
