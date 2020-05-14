@@ -1,11 +1,11 @@
 /*
 
-path : "http://127.0.0.1:80/languages"
+path : "http://127.0.0.1:4051/languages"
 methos: "GET"
 sucess code: 200 Ok
 error code: 400 bad request
 
-path : "http://127.0.0.1:80/languages"
+path : "http://127.0.0.1:4051/languages"
 methos: "POST"
 sucess code: 200 Ok
 error code: 400 bad request
