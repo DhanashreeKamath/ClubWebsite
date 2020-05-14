@@ -1,0 +1,162 @@
+[
+  {
+    "netid": "ho4406",
+    "firstName": "Maryanna",
+    "lastName": "Brown",
+    "email": "buffoonish1979@outlook.com",
+    "role": "admin",
+    "passHash": "$2a$11$nfecW/q/X46LlSwAvZD42uG/6ye7LXBIeunpv7Q1pzlNNue61WHem"
+  },
+  {
+    "netid": "lx4225",
+    "firstName": "Hugh",
+    "lastName": "Silva",
+    "email": "clipper1958@live.com",
+    "role": "admin",
+    "passHash": "$2a$11$bcBqTz/GmN4wGPG2/moV4ONxwT1jAX1VckWd2IjyLpi64zyd.0ebC"
+  },
+  {
+    "netid": "mk9763",
+    "firstName": "Lavonia",
+    "lastName": "Reid",
+    "email": "eyeline1993@gmail.com",
+    "role": "admin",
+    "passHash": "$2a$11$YoErrwUrqo.9hRCfq7.FPejjSRIhvujrpIkaRanox3QB2DA5GOwq2"
+  },
+  {
+    "netid": "xr1163",
+    "firstName": "Lilla",
+    "lastName": "Camacho",
+    "email": "phytosauria1866@yahoo.com",
+    "role": "admin",
+    "passHash": "$2a$11$fLensmyngYzgph8wfEyjBuN.EQCPmsvPrH9xtZrZ5t.j9txBxGKuG"
+  },
+  {
+    "netid": "qe7971",
+    "firstName": "Justin",
+    "lastName": "Fuller",
+    "email": "satirically2012@yandex.com",
+    "role": "member",
+    "passHash": "$2a$11$EYDTkNQv9/khtLwu0tbo4u0oixZGgMcnQ8JOdJm48dYrVNZt0UnGS"
+  },
+  {
+    "netid": "cd8865",
+    "firstName": "Carol",
+    "lastName": "Phillips",
+    "email": "canamo1829@gmail.com",
+    "role": "member",
+    "passHash": "$2a$11$RyPZ8S5NkJ.4C.eyR72Jd.DPWFEE5.ekwWg9jOLiv6xhMuER7aPXO"
+  },
+  {
+    "netid": "zv9217",
+    "firstName": "Andrea",
+    "lastName": "Dejesus",
+    "email": "creeps1908@gmail.com",
+    "role": "member",
+    "passHash": "$2a$11$rsAdJLzTto26WBvP7GabFOiv/0NSYidpuhwR1apHyUQqjB2v0d7oi"
+  },
+  {
+    "netid": "hw4586",
+    "firstName": "Hermina",
+    "lastName": "Payne",
+    "email": "chalton1879@live.com",
+    "role": "member",
+    "passHash": "$2a$11$meC/UhCe4gktU75BzCa/i.rr8RQ.vbbRHgEbMtSN9cd3TMcx2DiM2"
+  },
+  {
+    "netid": "zf2477",
+    "firstName": "Vince",
+    "lastName": "Wilkerson",
+    "email": "apolline2018@outlook.com",
+    "role": "member",
+    "passHash": "$2a$11$86IocYbS1/x1bbq7aNJ49.prxBYt0AbSUkLASbGCTuAjROPyirWk."
+  },
+  {
+    "netid": "az4469",
+    "firstName": "Sherwood",
+    "lastName": "Valencia",
+    "email": "serialism1825@live.com",
+    "role": "member",
+    "passHash": "$2a$11$4xNNybJC8Viv7ffDERhjnO8CU6csn7yCsV6cFbb9.lwSFhnOR584."
+  },
+  {
+    "netid": "qd1890",
+    "firstName": "Brian",
+    "lastName": "Kaufman",
+    "email": "alyre1928@outlook.com",
+    "role": "member",
+    "passHash": "$2a$11$eZWzrnfPIIbvXK4/R8uwFe7e2wvcu1uXGbbZRMlguyTCeE.oosBey"
+  },
+  {
+    "netid": "wj9168",
+    "firstName": "Alvera",
+    "lastName": "Howard",
+    "email": "evensong2009@live.com",
+    "role": "member",
+    "passHash": "$2a$11$iv79A7.WslI89iCuqSUYQeefiF.ugalXUQP0ZPlxoCX6i6JIjU1Ci"
+  },
+  {
+    "netid": "we6468",
+    "firstName": "Otelia",
+    "lastName": "Hancock",
+    "email": "ascertainability2020@yandex.com",
+    "role": "member",
+    "passHash": "$2a$11$Dej7DvE3ZTOK54uD2rtqYucRa1KBozE40KXTUuigeuRqoqN66rjWi"
+  },
+  {
+    "netid": "cd7600",
+    "firstName": "Waylon",
+    "lastName": "Winters",
+    "email": "unaborted2050@live.com",
+    "role": "member",
+    "passHash": "$2a$11$PrhpJ1e8As09E/dbkwKqyOfG9obcy/9FiDSjd7s7aSul7mgOmaIX6"
+  },
+  {
+    "netid": "lm5540",
+    "firstName": "Franklyn",
+    "lastName": "Brewer",
+    "email": "cantabile1911@live.com",
+    "role": "foiler",
+    "passHash": "$2a$11$fhadAy7xI.XMTJEq5SivDusKs1f.I4CkYL7ygNF4axh4atsyPTh7W"
+  },
+  {
+    "netid": "iy2481",
+    "firstName": "Jordan",
+    "lastName": "Blevins",
+    "email": "decision1994@outlook.com",
+    "role": "foiler",
+    "passHash": "$2a$11$2uT7C0r5jFSjHlp.26i2K.ngjjoFUiiTW506pdWg09K.cvVlMf.OS"
+  },
+  {
+    "netid": "ol5844",
+    "firstName": "Frank",
+    "lastName": "Berger",
+    "email": "clipper2033@gmail.com",
+    "role": "foiler",
+    "passHash": "$2a$11$0smc00Wagdev2gaHdvi7su7GTYyCjSEjlDBIaRCx0v2EfYFvehwfS"
+  },
+  {
+    "netid": "cs7717",
+    "firstName": "Mitchell",
+    "lastName": "Griffith",
+    "email": "coquet1826@outlook.com",
+    "role": "foiler",
+    "passHash": "$2a$11$MyZ2yU39qYgluSeGWNgy7OfS4ToV5czcA.BrOVmSe9cCtDr5l/hGW"
+  },
+  {
+    "netid": "xl6245",
+    "firstName": "Noe",
+    "lastName": "Parsons",
+    "email": "blotto1923@live.com",
+    "role": "foiler",
+    "passHash": "$2a$11$wvgv9PfdIqvjcN870D1kWuHk.p0ANBx4vZmAxcwL/1rSVCDNTUp1."
+  },
+  {
+    "netid": "pt2486",
+    "firstName": "Romeo",
+    "lastName": "Lancaster",
+    "email": "afrikaans1960@gmail.com",
+    "role": "foiler",
+    "passHash": "$2a$11$RWsgBZbbdOPRs4Qdg5t9Aewjq9F0LGuJrssPoEt3cQnz8LJCxn2I."
+  }
+]

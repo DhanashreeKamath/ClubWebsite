@@ -1,0 +1,211 @@
+[
+  {
+    "start": 1578024000,
+    "max2sec": 0,
+    "board": "Twintip 138",
+    "max10sec": 0,
+    "desc": "Forgot to wear GPS watch. First day at Coronation Beach near Geraldton, Western Australia. Windy. Used F-One 8m \"bandit\" kite and F-One twintip. This is a great spot for windsurfing and kiting. But no windsurfing rentals are available but kite equipment and lessons are available via KiteWest right on the beach.",
+    "sail": "8m, kite",
+    "location": "Coronation Beach, WA",
+    "distance": 0,
+    "end": 1578031200
+  },
+  {
+    "start": 1578115483,
+    "max2sec": 20.1,
+    "board": "Twintip 135, 138cm",
+    "max10sec": 15.46,
+    "desc": "Second day of kiting at Coronation Beach near Geraldton, Western Australia. Gusty day. Used 135cm \"Star\" twintip initially. Seemed kind of short. Took a break then went back out  but used an F-One 138cm twin tip which seemed much easier.",
+    "sail": "9m kite",
+    "location": "Coronation Beach, WA",
+    "distance": 12.38,
+    "end": 1578124457
+  },
+  {
+    "start": 1582930297,
+    "max2sec": 22.45,
+    "board": "Foil",
+    "max10sec": 21.99,
+    "desc": "Great first day of the season. Started very light then filled in. Unusually warm so got a summer like pattern. One trip to Treasure Island. Five other foilers out!",
+    "sail": "8.4",
+    "location": "Berkeley",
+    "distance": 15.75,
+    "end": 1582934770
+  },
+  {
+    "start": 1583964853,
+    "max2sec": 23.16,
+    "board": "FoilT-80",
+    "max10sec": 22.54,
+    "desc": "Nice 7.7 day, it came up quickly so I was late to hit the water relative to the rest of the fleet. Took a bit of work to get out and on foil but then good for the rest of the day. Nice tides too!",
+    "sail": "7.7",
+    "location": "Berkeley",
+    "distance": 23.2,
+    "end": 1583970877
+  },
+  {
+    "start": 1584137570,
+    "max2sec": 20.64,
+    "board": "FoilT-80",
+    "max10sec": 20.3,
+    "desc": "Gusty very southerly kind of day. Up and down, on and off. But some good sailing in between getting a workout. Chilly. Used full suit and rash guard.",
+    "sail": "5.5",
+    "location": "Berkeley",
+    "distance": 9.72,
+    "end": 1584142676
+  },
+  {
+    "start": 1585343626,
+    "max2sec": 22.9,
+    "board": "Foil-T80",
+    "max10sec": 22.41,
+    "desc": "Cold, but windy. Everybody needed a break we had a nice mini fleet. Two trips to Treasure Island. Getting back into sailing shape a bit.",
+    "sail": "5.9",
+    "location": "Berkeley",
+    "distance": 26.63,
+    "end": 1585350706
+  },
+  {
+    "start": 1585690944,
+    "max2sec": 22.13,
+    "board": "FoilT-80",
+    "max10sec": 21.56,
+    "desc": "Low tide so launched from BYC. Light took a while to get out and up on foil. Smooth water. Quiet bay, no fishing boats, no tour boats, only saw one ferry. Got up to Treasure Island then was concerned about enough wind to get back. Quite a (light wind) workout staying up on foil on the down wind trip back.",
+    "sail": "7.7",
+    "location": "Berkeley",
+    "distance": 21.78,
+    "end": 1585697702
+  },
+  {
+    "start": 1586814939,
+    "max2sec": 22.67,
+    "board": "FoilT-80",
+    "max10sec": 22.01,
+    "desc": "Windy enough for 5.9! Two trips to Treasure Island. Lot's of big chop today. Good to be on foil. Some \"banding\" of the wind at the end and some weeds, but overall a very good day on the bay. Air was exceptionally fresh and clear.",
+    "sail": "5.9",
+    "location": "Berkeley",
+    "distance": 24.31,
+    "end": 1586821378
+  },
+  {
+    "start": 1586985943,
+    "max2sec": 24.3,
+    "board": "FoilT-80",
+    "max10sec": 23.75,
+    "desc": "Windy and gusty but great. Windier down near Berkeley than up at Treasure Island. Got out early, headed to the south side for a bit less wind, then up to TI where it was lighter then came down and saw other folks and went back up, repeat with a trip to R2. Got caught in a lull above TI but headed north found wind and had a nice trip back to Berkeley. Until right before finishing finding lots of weeds and fishes with my foil.",
+    "sail": "5.9",
+    "location": "Berkeley",
+    "distance": 29.87,
+    "end": 1586994386
+  },
+  {
+    "start": 1587159231,
+    "max2sec": 23.58,
+    "board": "FoilT-80",
+    "max10sec": 23.25,
+    "desc": "Got out before most folks. Found some folks as I was coming down from TI and chased after them for a bit. I don't think I had the 6.6 optimally  tuned for upwind. But look at the miles!",
+    "sail": "6.6",
+    "location": "Berkeley",
+    "distance": 32.63,
+    "end": 1587166945
+  },
+  {
+    "start": 1587420146,
+    "max2sec": 22.38,
+    "board": "FoilT-80",
+    "max10sec": 21.76,
+    "desc": "Started out okay with the 6.6, but after a half an hour or so the wind really kicked up. One trip to Treasure Island and a very over powered trip back home. There were a bunch of kiters kiting inside of the Berkeley harbor breakwater (flying kites about the breakwater), made it a bit difficult to get in while avoiding their lines.",
+    "sail": "6.6",
+    "location": "Berkeley",
+    "distance": 19.72,
+    "end": 1587425790
+  },
+  {
+    "start": 1587764867,
+    "max2sec": 20.09,
+    "board": "FoilT-80",
+    "max10sec": 19.71,
+    "desc": "Good tides but not enough wind. A lot of time on the water but only a bit up on foil. ",
+    "sail": "7.7",
+    "location": "Berkeley",
+    "distance": 9.83,
+    "end": 1587772440
+  },
+  {
+    "start": 1587850679,
+    "max2sec": 22.77,
+    "board": "FoilT-80",
+    "max10sec": 22.41,
+    "desc": "Had to slog out a long way to get to the wind. Then there was a lot and then there wasn't. Slogged back at the end. But got in a fair amount of sailing in between.",
+    "sail": "7.7",
+    "location": "Berkeley",
+    "distance": 23.55,
+    "end": 1587858642
+  },
+  {
+    "start": 1588024552,
+    "max2sec": 23.29,
+    "board": "FoilT-80",
+    "max10sec": 22.99,
+    "desc": "Very light. Took took a long time to get up to the wind, then some nice sailing. Then a slog at the end.",
+    "sail": "8.4",
+    "location": "Berkeley",
+    "distance": 17.13,
+    "end": 1588031391
+  },
+  {
+    "start": 1588196372,
+    "max2sec": 23.8,
+    "board": "FoilT-80",
+    "max10sec": 23.62,
+    "desc": "Was about to head home due to lack of wind when Steve showed.  Decided to slog out and look for some wind. But the wind decided to show up. Very southerly. Gusty and up and down. One trip to Treasure Island. Lots of seaweed floating around and a lot of fish, i.e., hit a lot of them. Very wind at times, but as usual lately, it died down at the end and I had to slog in.",
+    "sail": "7.7",
+    "location": "Berkeley",
+    "distance": 19.27,
+    "end": 1588202585
+  },
+  {
+    "start": 1588282802,
+    "max2sec": 22.39,
+    "board": "FoilT-80",
+    "max10sec": 21.72,
+    "desc": "When rigging it seemed like it was going to be a nice 6.6 day. But it just kept coming up after I hit the water. One trip to Treasure Island, then survival sailing to get back home. Down in Berkeley the winds were 25-29mph! So happy to get back in without issues.",
+    "sail": "6.6",
+    "location": "Berkeley",
+    "distance": 14.84,
+    "end": 1588287750
+  },
+  {
+    "start": 1588370241,
+    "max2sec": 23.67,
+    "board": "FoilT-80",
+    "max10sec": 22.82,
+    "desc": "Nice day! Could have used the 5.9, but got a chance to get used to the 5.5 in a wide range of conditions. Got a little light up near TI, headed over to Angel Island than around R2 with Steve. Headed back when the wind started getting light, then it picked back up and no slogging for the day!",
+    "sail": "5.5",
+    "location": "Berkeley",
+    "distance": 19.71,
+    "end": 1588375186
+  },
+  {
+    "start": 1588629733,
+    "max2sec": 23.72,
+    "board": "FoilT-80",
+    "max10sec": 22.95,
+    "desc": "Very strange wind day. Windy when I arrived. Then it started \"banding\". With long low (near zero) lulls. Finally managed to get up and out far enough to stay on foil. Then things got a bit much near TI. Then headed back and had issues with staying on foil but made it in without slogging. But still a nice day on the bay.",
+    "sail": "5.9",
+    "location": "Berkeley",
+    "distance": 16.26,
+    "end": 1588634835
+  },
+  {
+    "start": 1588889022,
+    "max2sec": 24.81,
+    "board": "FoilT-80",
+    "max10sec": 24.01,
+    "desc": "Very gusty. Sail was quite \"grabby\", i.e., in the gusts. May have not been tuned right. Big waves since the tide was going out and it was fairly windy. Started banding at the end but got in without too much slogging.",
+    "sail": "5.9",
+    "location": "Berkeley",
+    "distance": 22.63,
+    "end": 1588895076
+  }
+]
