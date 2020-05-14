@@ -2,13 +2,13 @@ const rp = require('request-promise-native');
 
 let getLanguages = {
     url: 'http://127.0.0.1:4051/languages',
-    method: 'GET', // What does this do?
+    method: 'GET',
     resolveWithFullResponse: false,
 };
 
 let validAdd = {
     url: 'http://127.0.0.1:4051/languages',
-    method: 'POST', // What does this do?
+    method: 'POST',
     json: true,
     body: [ {
     	"language": "JavaScript",
@@ -20,7 +20,7 @@ let validAdd = {
 
 let invalidAdd = {
     url: 'http://127.0.0.1:4051/languages',
-    method: 'POST', // What does this do?
+    method: 'POST',
     json: true,
     body: [ {
     	"language": "C",
