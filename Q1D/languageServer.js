@@ -18,12 +18,10 @@ var Ajv = require('ajv');
 var schema = require('./dataSchema.json');
 
 app.get('/languages', function (req, res) {
-    //res.send(`${JSON.stringify(activityJson)}`);
     res.json(languages);
 });
 
 app.post('/languages', express.json(),function (req, res) {
-    //res.send(`${JSON.stringify(activityJson)}`);
     let data = req.body;
     console.log(req.body);
     const ajv = new Ajv();
